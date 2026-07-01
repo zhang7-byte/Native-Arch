@@ -327,9 +327,29 @@ class _HomeShellState extends State<HomeShell> {
     // it (extendBody) — that's what gives the blur real content to frost and
     // makes it read as translucent glass rather than a solid strip. Elsewhere
     // the bar is flush, so the body stays laid out above it.
+    final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
+    Widget shellBody = body;
+    if (isIOS) {
+      // Reserve room at the bottom of the content area for the floating pill
+      // (home-indicator inset + pill height + a gap) so per-screen FABs and the
+      // last list rows clear it instead of being covered — the bar still frosts
+      // content that scrolls beneath it.
+      final mq = MediaQuery.of(context);
+      final reserve = mq.padding.bottom + 54 + 22;
+      // Inflate BOTH padding (SafeArea / list content) and viewPadding
+      // (FloatingActionButtonLocation.endFloat positions the FAB off
+      // viewPadding, not padding) so the "New" FAB and content clear the pill.
+      shellBody = MediaQuery(
+        data: mq.copyWith(
+          padding: mq.padding.copyWith(bottom: reserve),
+          viewPadding: mq.viewPadding.copyWith(bottom: reserve),
+        ),
+        child: body,
+      );
+    }
     return Scaffold(
-      extendBody: defaultTargetPlatform == TargetPlatform.iOS,
-      body: body,
+      extendBody: isIOS,
+      body: shellBody,
       bottomNavigationBar: _bottomBar(context, selected),
     );
   }
