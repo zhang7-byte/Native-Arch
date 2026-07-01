@@ -1,0 +1,4 @@
+name,supplier,catalog_no,lot,location,expiry_date,quantity,notes
+Auxin (IAA),Sigma-Aldrich,I2886,LOT-A123,Fridge 1,2026-12-31,5 g,
+G418 (Geneticin),Gibco,11811-031,LOT-G777,Freezer -20,2026-09-15,10 mL,aliquoted
+Ampicillin sodium,Sigma-Aldrich,A9518,LOT-B555,Fridge 2,2027-03-01,25 g,working stock 100 mg/mL

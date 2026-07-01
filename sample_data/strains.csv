@@ -1,0 +1,4 @@
+name,host_organism,genotype,plasmid,construct_notes,freezer_location,notes
+2407,Yarrowia lipolytica,VERIFY,,dGFP reference strain,Box A1,imported from CSV
+2419,Yarrowia lipolytica,VERIFY,p5219,IAA-inducible AID2 + dGFP variant,Box A2,imported from CSV
+EC100,Escherichia coli,F- endA1 recA1,pUC19,cloning host,Box C3,new strain from CSV

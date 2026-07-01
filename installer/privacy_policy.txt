@@ -1,0 +1,33 @@
+LabTrack - Privacy Policy
+
+LabTrack is a local-first laboratory management application developed by the
+Su Lab (MBBE, University of Hawaii at Manoa).
+
+1. Local data
+   All of your data - projects, experiments, tasks, strains, reagents, cultures,
+   primers, protocols, reports, images and settings - is stored locally on this
+   device in an on-device database. It does not leave this device unless you
+   explicitly enable Cloud Sync.
+
+2. Optional cloud sync
+   If you choose to configure Cloud Sync, your data is sent to and stored on the
+   Supabase project whose URL and key YOU provide and control. Syncing only runs
+   when you press "Push" or "Pull" (or when you have enabled sync-on-close). If
+   you never configure Cloud Sync, no data is transmitted anywhere.
+
+3. No tracking
+   LabTrack contains no advertising, analytics, telemetry or third-party
+   tracking. It collects no usage statistics and makes no network connection
+   except to the Supabase backend you configure.
+
+4. Notifications
+   Deadline and schedule reminders are generated and displayed locally on this
+   device. No reminder content is sent off-device.
+
+5. Your control
+   You can export your data to PDF or a backup file at any time, and delete any
+   or all of it from within the app. Uninstalling the application removes the
+   program files; your database remains in your user profile until you remove it.
+
+By selecting "I accept" you acknowledge that you have read and agree to this
+Privacy Policy. If you do not accept, the installation will not continue.

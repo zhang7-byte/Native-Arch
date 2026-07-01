@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Warm-paper background shown by the OS launch screen (light mode), so the
+         native start matches the Flutter splash with no white flash. -->
+    <color name="launch_bg">#FAF9F5</color>
+</resources>

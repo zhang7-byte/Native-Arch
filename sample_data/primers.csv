@@ -1,0 +1,4 @@
+name,sequence,target_gene,direction,tm,supplier,notes
+pUSP7-F,ATGCAGGTGCCGAATCTGAC,USP7,forward,58,IDT,Cloning fwd
+pUSP7-R,TCAGGCCTTGATCAGCTTGG,USP7,reverse,60,IDT,Cloning rev
+pdGFP-seq,GACGTAAACGGCCACAAGTT,dGFP,forward,57,IDT,Sequencing primer
