@@ -135,6 +135,15 @@ class _WindowTitleBarState extends State<WindowTitleBar> with WindowListener {
               if (widget.navigatorKey != null)
                 _SearchButton(navigatorKey: widget.navigatorKey!),
               const Spacer(),
+              // On macOS the native traffic lights are hidden (TitleBarStyle
+              // .hidden) and the caption buttons below are Windows/Linux only,
+              // so the window would have no minimise control. Add one here, in
+              // front of the cloud sync (Push) button.
+              if (isMac)
+                _BarActionButton(
+                  icon: Icons.remove,
+                  onPressed: () => windowManager.minimize(),
+                ),
               // Cloud sync push/pull, shown when signed in — placed in front of
               // the window caption buttons.
               if (widget.navigatorKey != null)

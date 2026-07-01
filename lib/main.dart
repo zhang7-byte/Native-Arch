@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io' show Platform;
+import 'dart:io' show Platform, exit;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -163,7 +163,10 @@ class _LabTrackAppState extends State<LabTrackApp>
   /// Sets up the system-tray icon + right-click menu (desktop only).
   Future<void> _initTray() async {
     try {
-      await trayManager.setIcon('assets/app_icon.ico');
+      // Windows uses the .ico; macOS/Linux status items need a PNG.
+      await trayManager.setIcon(
+        Platform.isWindows ? 'assets/app_icon.ico' : 'assets/app_icon.png',
+      );
       await trayManager.setToolTip('LabTrack');
       await trayManager.setContextMenu(
         Menu(
@@ -321,6 +324,10 @@ class _LabTrackAppState extends State<LabTrackApp>
     }
     await windowManager.setPreventClose(false);
     await windowManager.destroy();
+    // With applicationShouldTerminateAfterLastWindowClosed = false (so minimise
+    // to tray doesn't quit the app), destroying the window no longer ends the
+    // process — exit explicitly on a real quit.
+    exit(0);
   }
 
   @override

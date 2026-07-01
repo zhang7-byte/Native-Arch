@@ -11,53 +11,78 @@ import 'glass.dart';
 import 'lock.dart';
 import 'board/board_screen.dart';
 import 'cloning/clone_list_screen.dart';
+import 'cloning/clone_master_detail.dart';
 import 'cultures/active_cultures_screen.dart';
+import 'cultures/culture_master_detail.dart';
 import 'dashboard/dashboard_screen.dart';
 import 'deadlines/deadlines_screen.dart';
 import 'experiments/experiment_list_screen.dart';
+import 'experiments/experiment_master_detail.dart';
 import 'primers/primer_list_screen.dart';
+import 'primers/primer_master_detail.dart';
 import 'projects/project_list_screen.dart';
+import 'projects/project_master_detail.dart';
 import 'protocols/protocol_list_screen.dart';
+import 'protocols/protocol_master_detail.dart';
 import 'reagents/reagent_list_screen.dart';
+import 'reagents/reagent_master_detail.dart';
 import 'report/report_list_screen.dart';
+import 'report/report_master_detail.dart';
 import 'schedule/schedule_screen.dart';
 import 'settings/settings_screen.dart';
 import 'strains/strain_list_screen.dart';
+import 'strains/strain_master_detail.dart';
 import 'tasks/task_list_screen.dart';
+import 'tasks/task_master_detail.dart';
 import 'workspace/workspace_screen.dart';
 
 class _Dest {
-  const _Dest(this.icon, this.selectedIcon, this.label, this.screen);
+  const _Dest(this.icon, this.selectedIcon, this.label, this.screen,
+      {this.wideScreen});
   final IconData icon;
   final IconData selectedIcon;
   final String label;
   final Widget screen;
+
+  /// Optional layout used instead of [screen] on wide desktop windows (e.g. a
+  /// master-detail split). Falls back to [screen] when null or when narrow.
+  final Widget? wideScreen;
 }
 
 const _dests = <_Dest>[
   _Dest(Icons.dashboard_outlined, Icons.dashboard, 'Dashboard',
       DashboardScreen()),
-  _Dest(Icons.science_outlined, Icons.science, 'Projects', ProjectListScreen()),
+  _Dest(Icons.science_outlined, Icons.science, 'Projects', ProjectListScreen(),
+      wideScreen: ProjectMasterDetail()),
   _Dest(Icons.view_kanban_outlined, Icons.view_kanban, 'Board', BoardScreen()),
   _Dest(Icons.event_outlined, Icons.event, 'Deadlines', DeadlinesScreen()),
   _Dest(Icons.calendar_month_outlined, Icons.calendar_month, 'Schedule',
       ScheduleScreen()),
   _Dest(Icons.biotech_outlined, Icons.biotech, 'Experiments',
-      ExperimentListScreen()),
-  _Dest(Icons.checklist_outlined, Icons.checklist, 'Tasks', TaskListScreen()),
+      ExperimentListScreen(),
+      wideScreen: ExperimentMasterDetail()),
+  _Dest(Icons.checklist_outlined, Icons.checklist, 'Tasks', TaskListScreen(),
+      wideScreen: TaskMasterDetail()),
   _Dest(Icons.coronavirus_outlined, Icons.coronavirus, 'Strains',
-      StrainListScreen()),
+      StrainListScreen(),
+      wideScreen: StrainMasterDetail()),
   _Dest(Icons.inventory_2_outlined, Icons.inventory_2, 'Reagents',
-      ReagentListScreen()),
+      ReagentListScreen(),
+      wideScreen: ReagentMasterDetail()),
   _Dest(Icons.bubble_chart_outlined, Icons.bubble_chart, 'Cultures',
-      ActiveCulturesScreen()),
-  _Dest(Icons.biotech_outlined, Icons.biotech, 'Primers', PrimerListScreen()),
+      ActiveCulturesScreen(),
+      wideScreen: CultureMasterDetail()),
+  _Dest(Icons.biotech_outlined, Icons.biotech, 'Primers', PrimerListScreen(),
+      wideScreen: PrimerMasterDetail()),
   _Dest(Icons.donut_large_outlined, Icons.donut_large, 'Cloning',
-      CloneListScreen()),
+      CloneListScreen(),
+      wideScreen: CloneMasterDetail()),
   _Dest(Icons.menu_book_outlined, Icons.menu_book, 'Protocols',
-      ProtocolListScreen()),
+      ProtocolListScreen(),
+      wideScreen: ProtocolMasterDetail()),
   _Dest(Icons.assessment_outlined, Icons.assessment, 'Report',
-      ReportListScreen()),
+      ReportListScreen(),
+      wideScreen: ReportMasterDetail()),
   _Dest(Icons.workspaces_outlined, Icons.workspaces, 'Workspace',
       WorkspaceScreen()),
   _Dest(Icons.settings_outlined, Icons.settings, 'Settings', SettingsScreen()),
@@ -252,17 +277,15 @@ class _HomeShellState extends State<HomeShell> {
     await SystemNavigator.pop();
   }
 
+  /// Cross-fade between sections (~180ms) so moving areas doesn't snap.
+  Widget _switcher(Widget child) => AnimatedSwitcher(
+        duration: const Duration(milliseconds: 180),
+        switchInCurve: Curves.easeOut,
+        switchOutCurve: Curves.easeIn,
+        child: KeyedSubtree(key: ValueKey(_index), child: child),
+      );
+
   Widget _shell(BuildContext context) {
-    // Cross-fade between sections (~180ms) so moving areas doesn't snap.
-    final body = AnimatedSwitcher(
-      duration: const Duration(milliseconds: 180),
-      switchInCurve: Curves.easeOut,
-      switchOutCurve: Curves.easeIn,
-      child: KeyedSubtree(
-        key: ValueKey(_index),
-        child: _dests[_index].screen,
-      ),
-    );
     // Phones (short side < 600 dp) get the floating bottom island in BOTH
     // orientations; tablets/desktop get the side rail.
     final isPhone = MediaQuery.sizeOf(context).shortestSide < 600;
@@ -271,6 +294,11 @@ class _HomeShellState extends State<HomeShell> {
       return LayoutBuilder(
         builder: (context, constraints) {
           final extended = constraints.maxWidth >= 1100;
+          // Enough room for a master-detail split (rail + list + editor).
+          final wide = constraints.maxWidth >= 900;
+          final dest = _dests[_index];
+          final body = _switcher(
+              (wide && dest.wideScreen != null) ? dest.wideScreen! : dest.screen);
           return Scaffold(
             body: Row(
               children: [
@@ -327,7 +355,7 @@ class _HomeShellState extends State<HomeShell> {
       // No extendBody: the body is laid out ABOVE the bottom bar, so per-tab
       // FABs and scrollable content never hide behind it. The bar handles its
       // own SafeArea (home indicator) inset.
-      body: body,
+      body: _switcher(_dests[_index].screen),
       bottomNavigationBar: _bottomBar(context, selected),
     );
   }
