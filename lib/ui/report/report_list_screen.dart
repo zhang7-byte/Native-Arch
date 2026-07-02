@@ -8,6 +8,7 @@ import '../app_database_provider.dart';
 import '../export/pdf_preview_screen.dart';
 import '../glass.dart';
 import '../labels.dart';
+import '../master_detail.dart';
 import 'report_edit_screen.dart';
 
 /// Saved PI progress reports. Compose, edit, and export each as a self-contained
@@ -25,8 +26,8 @@ class ReportListScreen extends StatelessWidget {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-reports',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const ReportEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const ReportEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New report'),
       ),
@@ -117,16 +118,16 @@ class _ReportTile extends StatelessWidget {
       title: Text(report.title,
           style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: Text(subtitle),
-      onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => ReportEditScreen(report: report))),
+      onTap: () => openDetail(
+          context, (_) => ReportEditScreen(report: report)),
       trailing: GlassMoreButton(
         tooltip: 'Report actions',
         actions: [
           GlassAction(
               Icons.edit_outlined,
               'Edit',
-              () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => ReportEditScreen(report: report)))),
+              () => openDetail(context,
+                  (_) => ReportEditScreen(report: report))),
           GlassAction(Icons.picture_as_pdf_outlined, 'Export PDF',
               () => _export(context), mutates: false),
           GlassAction(Icons.delete_outline, 'Delete',

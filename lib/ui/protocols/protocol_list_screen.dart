@@ -11,6 +11,7 @@ import '../export/pdf_preview_screen.dart';
 import '../export/select_export_screen.dart';
 import '../glass.dart';
 import '../import/import_screen.dart';
+import '../master_detail.dart';
 import 'protocol_edit_screen.dart';
 
 /// Searchable library of reusable lab protocols (SOPs). Compose step-by-step,
@@ -90,8 +91,8 @@ class _ProtocolListScreenState extends State<ProtocolListScreen> {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-protocols',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const ProtocolEditScreen())),
+        onPressed: () =>
+            openDetail(context, (_) => const ProtocolEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New protocol'),
       ),
@@ -193,16 +194,16 @@ class _ProtocolTile extends StatelessWidget {
       title: Text(protocol.name,
           style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: Text(subtitle),
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => ProtocolEditScreen(protocol: protocol))),
+      onTap: () => openDetail(
+          context, (_) => ProtocolEditScreen(protocol: protocol)),
       trailing: GlassMoreButton(
         tooltip: 'Protocol actions',
         actions: [
           GlassAction(
               Icons.edit_outlined,
               'Edit',
-              () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => ProtocolEditScreen(protocol: protocol)))),
+              () => openDetail(context,
+                  (_) => ProtocolEditScreen(protocol: protocol))),
           GlassAction(Icons.picture_as_pdf_outlined, 'Export PDF',
               () => _export(context),
               mutates: false),

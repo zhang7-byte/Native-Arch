@@ -9,6 +9,7 @@ import '../app_database_provider.dart';
 import '../export/pdf_preview_screen.dart';
 import '../export/select_export_screen.dart';
 import '../glass.dart';
+import '../master_detail.dart';
 import 'archived_cultures_screen.dart';
 import 'culture_edit_screen.dart';
 import 'culture_tile.dart';
@@ -145,8 +146,8 @@ class _ActiveCulturesScreenState extends State<ActiveCulturesScreen> {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-cultures',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const CultureEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const CultureEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New culture'),
       ),

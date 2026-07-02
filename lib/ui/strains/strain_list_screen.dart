@@ -11,6 +11,7 @@ import '../export/export_csv.dart';
 import '../export/select_export_screen.dart';
 import '../glass.dart';
 import '../import/import_screen.dart';
+import '../master_detail.dart';
 import '../search_picker.dart';
 import 'strain_detail_screen.dart';
 import 'strain_edit_screen.dart';
@@ -172,8 +173,8 @@ class _StrainListScreenState extends State<StrainListScreen> {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-strains',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const StrainEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const StrainEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New strain'),
       ),
@@ -255,8 +256,8 @@ class _StrainTile extends StatelessWidget {
       if (strain.constructNotes.isNotEmpty) strain.constructNotes,
     ].join(' · ');
     return ListTile(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => StrainDetailScreen(strainId: strain.id))),
+      onTap: () => openDetail(
+          context, (_) => StrainDetailScreen(strainId: strain.id)),
       title: Text(strain.name,
           style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: subtitle.isEmpty ? null : Text(subtitle),
@@ -266,8 +267,8 @@ class _StrainTile extends StatelessWidget {
           GlassAction(
               Icons.edit_outlined,
               'Edit',
-              () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => StrainEditScreen(strain: strain)))),
+              () => openDetail(
+                  context, (_) => StrainEditScreen(strain: strain))),
           GlassAction(Icons.delete_outline, 'Delete',
               () => _confirmDelete(context),
               destructive: true),

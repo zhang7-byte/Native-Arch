@@ -11,6 +11,7 @@ import '../export/select_export_screen.dart';
 import '../glass.dart';
 import '../import/import_screen.dart';
 import '../labels.dart';
+import '../master_detail.dart';
 import '../widgets.dart';
 import 'reagent_edit_screen.dart';
 
@@ -115,9 +116,9 @@ class _ReagentListScreenState extends State<ReagentListScreen> {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-reagents',
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => ReagentEditScreen(
-                initialKind: buffersFilter ? 'buffer' : 'reagent'))),
+        onPressed: () => openDetail(
+            context, (_) => ReagentEditScreen(
+                initialKind: buffersFilter ? 'buffer' : 'reagent')),
         icon: const Icon(Icons.add),
         label: Text(buffersFilter ? 'New buffer' : 'New reagent'),
       ),
@@ -239,8 +240,8 @@ class _ReagentTile extends StatelessWidget {
       isThreeLine: chip != null,
       leading: Icon(
           _isBuffer ? Icons.opacity_outlined : Icons.science_outlined),
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => ReagentEditScreen(reagent: reagent))),
+      onTap: () => openDetail(
+          context, (_) => ReagentEditScreen(reagent: reagent)),
       title: Text(reagent.name,
           style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: Column(
@@ -261,8 +262,8 @@ class _ReagentTile extends StatelessWidget {
           GlassAction(
               Icons.edit_outlined,
               'Edit',
-              () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => ReagentEditScreen(reagent: reagent)))),
+              () => openDetail(
+                  context, (_) => ReagentEditScreen(reagent: reagent))),
           GlassAction(Icons.delete_outline, 'Delete',
               () => _confirmDelete(context),
               destructive: true),

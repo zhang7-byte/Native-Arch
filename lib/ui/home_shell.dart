@@ -9,6 +9,7 @@ import 'account/sync_scope.dart';
 import 'app_database_provider.dart';
 import 'glass.dart';
 import 'lock.dart';
+import 'master_detail.dart';
 import 'board/board_screen.dart';
 import 'cloning/clone_list_screen.dart';
 import 'cultures/active_cultures_screen.dart';
@@ -27,37 +28,45 @@ import 'tasks/task_list_screen.dart';
 import 'workspace/workspace_screen.dart';
 
 class _Dest {
-  const _Dest(this.icon, this.selectedIcon, this.label, this.screen);
+  const _Dest(this.icon, this.selectedIcon, this.label, this.screen,
+      {this.masterDetail = false});
   final IconData icon;
   final IconData selectedIcon;
   final String label;
   final Widget screen;
+
+  /// On large horizontal screens, wrap this section's list in a master-detail
+  /// split (list on the left, detail/edit in a right pane).
+  final bool masterDetail;
 }
 
 const _dests = <_Dest>[
   _Dest(Icons.dashboard_outlined, Icons.dashboard, 'Dashboard',
       DashboardScreen()),
-  _Dest(Icons.science_outlined, Icons.science, 'Projects', ProjectListScreen()),
+  _Dest(Icons.science_outlined, Icons.science, 'Projects', ProjectListScreen(),
+      masterDetail: true),
   _Dest(Icons.view_kanban_outlined, Icons.view_kanban, 'Board', BoardScreen()),
   _Dest(Icons.event_outlined, Icons.event, 'Deadlines', DeadlinesScreen()),
   _Dest(Icons.calendar_month_outlined, Icons.calendar_month, 'Schedule',
       ScheduleScreen()),
   _Dest(Icons.biotech_outlined, Icons.biotech, 'Experiments',
-      ExperimentListScreen()),
-  _Dest(Icons.checklist_outlined, Icons.checklist, 'Tasks', TaskListScreen()),
+      ExperimentListScreen(), masterDetail: true),
+  _Dest(Icons.checklist_outlined, Icons.checklist, 'Tasks', TaskListScreen(),
+      masterDetail: true),
   _Dest(Icons.coronavirus_outlined, Icons.coronavirus, 'Strains',
-      StrainListScreen()),
+      StrainListScreen(), masterDetail: true),
   _Dest(Icons.inventory_2_outlined, Icons.inventory_2, 'Reagents',
-      ReagentListScreen()),
+      ReagentListScreen(), masterDetail: true),
   _Dest(Icons.bubble_chart_outlined, Icons.bubble_chart, 'Cultures',
-      ActiveCulturesScreen()),
-  _Dest(Icons.biotech_outlined, Icons.biotech, 'Primers', PrimerListScreen()),
+      ActiveCulturesScreen(), masterDetail: true),
+  _Dest(Icons.biotech_outlined, Icons.biotech, 'Primers', PrimerListScreen(),
+      masterDetail: true),
   _Dest(Icons.donut_large_outlined, Icons.donut_large, 'Cloning',
-      CloneListScreen()),
+      CloneListScreen(), masterDetail: true),
   _Dest(Icons.menu_book_outlined, Icons.menu_book, 'Protocols',
-      ProtocolListScreen()),
+      ProtocolListScreen(), masterDetail: true),
   _Dest(Icons.assessment_outlined, Icons.assessment, 'Report',
-      ReportListScreen()),
+      ReportListScreen(), masterDetail: true),
   _Dest(Icons.workspaces_outlined, Icons.workspaces, 'Workspace',
       WorkspaceScreen()),
   _Dest(Icons.settings_outlined, Icons.settings, 'Settings', SettingsScreen()),
@@ -254,13 +263,16 @@ class _HomeShellState extends State<HomeShell> {
 
   Widget _shell(BuildContext context) {
     // Cross-fade between sections (~180ms) so moving areas doesn't snap.
+    final current = _dests[_index];
     final body = AnimatedSwitcher(
       duration: const Duration(milliseconds: 180),
       switchInCurve: Curves.easeOut,
       switchOutCurve: Curves.easeIn,
       child: KeyedSubtree(
         key: ValueKey(_index),
-        child: _dests[_index].screen,
+        child: current.masterDetail
+            ? MasterDetailShell(list: current.screen)
+            : current.screen,
       ),
     );
     // Phones (short side < 600 dp) get the floating bottom island in BOTH

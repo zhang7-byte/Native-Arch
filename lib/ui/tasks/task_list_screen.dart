@@ -8,6 +8,7 @@ import '../account/account_button.dart';
 import '../app_database_provider.dart';
 import '../glass.dart';
 import '../labels.dart';
+import '../master_detail.dart';
 import '../widgets.dart';
 import 'task_edit_screen.dart';
 
@@ -30,8 +31,8 @@ class TaskListScreen extends StatelessWidget {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-tasks',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const TaskEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const TaskEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New task'),
       ),
@@ -85,9 +86,8 @@ class TaskListScreen extends StatelessWidget {
                         leading: Icon(t.status == TaskStatus.done
                             ? Icons.check_circle_outline
                             : Icons.radio_button_unchecked),
-                        onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (_) => TaskEditScreen(task: t))),
+                        onTap: () => openDetail(
+                            context, (_) => TaskEditScreen(task: t)),
                         title: Padding(
                           padding: const EdgeInsets.only(bottom: 4),
                           child: Text(t.title,

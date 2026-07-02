@@ -6,6 +6,7 @@ import '../account/account_button.dart';
 import '../app_database_provider.dart';
 import '../glass.dart';
 import '../labels.dart';
+import '../master_detail.dart';
 import '../widgets.dart';
 import 'experiment_detail_screen.dart';
 import 'experiment_edit_screen.dart';
@@ -48,8 +49,8 @@ class ExperimentListScreen extends StatelessWidget {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-experiments',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const ExperimentEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const ExperimentEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New experiment'),
       ),
@@ -83,9 +84,8 @@ class ExperimentListScreen extends StatelessWidget {
               final (exp, projectTitle) = rows[i];
               return ListTile(
                 isThreeLine: true,
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) =>
-                        ExperimentDetailScreen(experimentId: exp.id))),
+                onTap: () => openDetail(context, (_) =>
+                    ExperimentDetailScreen(experimentId: exp.id)),
                 title: Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Text(exp.title,
@@ -113,9 +113,8 @@ class ExperimentListScreen extends StatelessWidget {
                     GlassAction(
                         Icons.edit_outlined,
                         'Edit',
-                        () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) =>
-                                ExperimentEditScreen(experiment: exp)))),
+                        () => openDetail(context, (_) =>
+                            ExperimentEditScreen(experiment: exp))),
                     GlassAction(Icons.delete_outline, 'Delete',
                         () => _confirmDelete(context, repo, exp),
                         destructive: true),

@@ -8,6 +8,7 @@ import '../app_database_provider.dart';
 import '../export/export_csv.dart';
 import '../glass.dart';
 import '../import/import_screen.dart';
+import '../master_detail.dart';
 import '../widgets.dart';
 import 'primer_edit_screen.dart';
 
@@ -62,8 +63,8 @@ class _PrimerListScreenState extends State<PrimerListScreen> {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-primers',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const PrimerEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const PrimerEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New primer'),
       ),
@@ -159,16 +160,16 @@ class _PrimerTile extends StatelessWidget {
             ),
         ],
       ),
-      onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => PrimerEditScreen(primer: primer))),
+      onTap: () => openDetail(
+          context, (_) => PrimerEditScreen(primer: primer)),
       trailing: GlassMoreButton(
         tooltip: 'Primer actions',
         actions: [
           GlassAction(
               Icons.edit_outlined,
               'Edit',
-              () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => PrimerEditScreen(primer: primer)))),
+              () => openDetail(context,
+                  (_) => PrimerEditScreen(primer: primer))),
           GlassAction(Icons.delete_outline, 'Delete',
               () => _confirmDelete(context),
               destructive: true),

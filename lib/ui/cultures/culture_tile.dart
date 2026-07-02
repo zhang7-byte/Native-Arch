@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/database.dart';
 import '../labels.dart';
+import '../master_detail.dart';
 import '../widgets.dart';
 import 'culture_detail_screen.dart';
 import 'culture_labels.dart';
@@ -40,8 +41,8 @@ class CultureTile extends StatelessWidget {
         ),
       ),
       trailing: trailing,
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => CultureDetailScreen(cultureId: culture.id))),
+      onTap: () => openDetail(
+          context, (_) => CultureDetailScreen(cultureId: culture.id)),
     );
   }
 }

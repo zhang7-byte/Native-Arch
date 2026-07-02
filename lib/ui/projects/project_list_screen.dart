@@ -6,6 +6,7 @@ import '../account/account_button.dart';
 import '../app_database_provider.dart';
 import '../glass.dart';
 import '../labels.dart';
+import '../master_detail.dart';
 import '../widgets.dart';
 import 'project_detail_screen.dart';
 import 'project_edit_screen.dart';
@@ -142,8 +143,8 @@ class _ProjectListScreenState extends State<ProjectListScreen> {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-projects',
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => const ProjectEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const ProjectEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New project'),
       ),
@@ -262,8 +263,8 @@ class _ProjectTile extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     return ListTile(
       isThreeLine: true,
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => ProjectDetailScreen(projectId: project.id))),
+      onTap: () => openDetail(
+          context, (_) => ProjectDetailScreen(projectId: project.id)),
       title: Padding(
         padding: const EdgeInsets.only(bottom: 4),
         child: Text(project.title,
@@ -296,8 +297,8 @@ class _ProjectTile extends StatelessWidget {
           GlassAction(
               Icons.edit_outlined,
               'Edit',
-              () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => ProjectEditScreen(project: project)))),
+              () => openDetail(context,
+                  (_) => ProjectEditScreen(project: project))),
           GlassAction(Icons.delete_outline, 'Delete',
               () => _confirmDelete(context),
               destructive: true),

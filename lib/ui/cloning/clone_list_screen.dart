@@ -7,6 +7,7 @@ import '../account/account_button.dart';
 import '../app_database_provider.dart';
 import '../export/pdf_preview_screen.dart';
 import '../glass.dart';
+import '../master_detail.dart';
 import 'clone_edit_screen.dart';
 
 /// Saved Gibson clone constructions. Design fragments + backbone, see the
@@ -24,8 +25,8 @@ class CloneListScreen extends StatelessWidget {
       ),
       floatingActionButton: GlassFab(
         heroTag: 'fab-cloning',
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const CloneEditScreen())),
+        onPressed: () => openDetail(
+            context, (_) => const CloneEditScreen()),
         icon: const Icon(Icons.add),
         label: const Text('New construction'),
       ),
@@ -115,16 +116,16 @@ class _CloneTile extends StatelessWidget {
           construction.name.isEmpty ? 'Untitled construction' : construction.name,
           style: const TextStyle(fontWeight: FontWeight.w600)),
       subtitle: Text(subtitle),
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => CloneEditScreen(construction: construction))),
+      onTap: () => openDetail(
+          context, (_) => CloneEditScreen(construction: construction)),
       trailing: GlassMoreButton(
         tooltip: 'Construction actions',
         actions: [
           GlassAction(
               Icons.edit_outlined,
               'Edit',
-              () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => CloneEditScreen(construction: construction)))),
+              () => openDetail(context,
+                  (_) => CloneEditScreen(construction: construction))),
           GlassAction(Icons.picture_as_pdf_outlined, 'Export PDF',
               () => _export(context), mutates: false),
           GlassAction(Icons.delete_outline, 'Delete',
