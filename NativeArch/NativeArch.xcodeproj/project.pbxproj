@@ -21,6 +21,7 @@
 		313C8DE8BBBD21D570FB028B /* AppStore+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80BB7E91562907496668DC /* AppStore+Settings.swift */; };
 		3E91B6640600AD3C2DEFFE2F /* AppStore+CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC851E2BB8015B4434EC458C /* AppStore+CSV.swift */; };
 		3F85365DF57023003815CBB2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7175B0E9AF87A09AA073D3FC /* Theme.swift */; };
+		49AEB91CD122729BDE704C3B /* Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B5547C35A66EBA095759B9 /* Gzip.swift */; };
 		4B3A14B57014ABE827CCCFAC /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0264FCE588A7821ED27393D3 /* WorkspaceView.swift */; };
 		4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A68280F0B6D65F7B54D73 /* ExperimentEditor.swift */; };
 		5144F1A529277431F79CB51A /* AppStore+Strains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */; };
@@ -100,6 +101,7 @@
 		4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolEditor.swift; sourceTree = "<group>"; };
 		4C17ACB6352899ECD431846A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		50AFF219B54831E31EB5B553 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		50B5547C35A66EBA095759B9 /* Gzip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gzip.swift; sourceTree = "<group>"; };
 		583C2FEF54D9119EF6329BA4 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		6A7E56950D4F94BDEBE69A5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Tasks.swift"; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				A8DB45AD6AC0C4519B1A8BB7 /* CSV.swift */,
 				A936A1713AA38A7411895991 /* FileDocuments.swift */,
+				50B5547C35A66EBA095759B9 /* Gzip.swift */,
 				4C17ACB6352899ECD431846A /* NotificationService.swift */,
 				A0519E9D2F02CBFDF2DE302D /* PDFRender.swift */,
 				A9362B22813A5A06EB254024 /* SyncConfig.swift */,
@@ -496,6 +499,7 @@
 				4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */,
 				22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */,
 				D6083EF486EEB354DBAF54E5 /* FileDocuments.swift in Sources */,
+				49AEB91CD122729BDE704C3B /* Gzip.swift in Sources */,
 				A5ABEB8210972C8314CEE585 /* Models.swift in Sources */,
 				0466FA2C61B06AA03B0220E5 /* NativeArchApp.swift in Sources */,
 				F9D545F366518E75689E5DD8 /* NotificationService.swift in Sources */,

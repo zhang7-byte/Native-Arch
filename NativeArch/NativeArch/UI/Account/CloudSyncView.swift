@@ -21,9 +21,6 @@ struct CloudSyncView: View {
                         Button("Sign out", role: .destructive) { auth.signOut() }
                     }
                     Section("Sync") {
-                        Button { run { await store.syncNow(using: auth) } } label: {
-                            Label("Sync now", systemImage: "arrow.triangle.2.circlepath")
-                        }.disabled(syncing)
                         Button { run { await store.push(using: auth) } } label: {
                             Label("Push to cloud", systemImage: "arrow.up.circle")
                         }.disabled(syncing)
@@ -33,7 +30,7 @@ struct CloudSyncView: View {
                         if !syncStatus.isEmpty {
                             Text(syncStatus).font(.footnote).foregroundStyle(.secondary)
                         }
-                        Text("Sync upserts records both ways (newest wins) and applies deletions via tombstones.")
+                        Text("Snapshot sync (compatible with the LabTrack cloud): Push overwrites the cloud copy with this device's data; Pull replaces this device's data with the cloud copy.")
                             .font(.footnote).foregroundStyle(.secondary)
                     }
                 } else {

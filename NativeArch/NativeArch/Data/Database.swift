@@ -188,6 +188,24 @@ final class Database {
         );
         """)
 
+        // Manuscripts: no native UI yet, but the table exists so cloud snapshots
+        // round-trip it without data loss.
+        exec("""
+        CREATE TABLE IF NOT EXISTS manuscripts (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            project_id TEXT REFERENCES projects (id) ON DELETE CASCADE,
+            title TEXT NOT NULL DEFAULT '',
+            target_journal TEXT NOT NULL DEFAULT '',
+            status TEXT NOT NULL DEFAULT 'drafting',
+            submission_id TEXT NOT NULL DEFAULT '',
+            submitted_date INTEGER,
+            notes TEXT NOT NULL DEFAULT ''
+        );
+        """)
+
         exec("""
         CREATE TABLE IF NOT EXISTS cultures (
             id TEXT NOT NULL PRIMARY KEY,
