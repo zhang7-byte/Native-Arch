@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The app's sections, mirroring the Flutter navigation rail. Projects and
 /// Experiments are implemented; the rest are placeholders for now.
-enum Section: String, CaseIterable, Identifiable, Hashable {
+enum AppSection: String, CaseIterable, Identifiable, Hashable {
     case dashboard, projects, board, deadlines, schedule, experiments, tasks,
          strains, reagents, cultures, primers, cloning, protocols, report,
          workspace, settings
@@ -56,11 +56,11 @@ enum Section: String, CaseIterable, Identifiable, Hashable {
 
 /// Liquid Glass navigation shell: a sidebar of sections with a detail pane.
 struct RootView: View {
-    @State private var selection: Section? = .projects
+    @State private var selection: AppSection? = .projects
 
     var body: some View {
         NavigationSplitView {
-            List(Section.allCases, selection: $selection) { section in
+            List(AppSection.allCases, selection: $selection) { section in
                 Label(section.title, systemImage: section.icon)
                     .tag(section)
             }
@@ -77,7 +77,7 @@ struct RootView: View {
 
 /// Placeholder for sections not yet ported.
 struct ComingSoonView: View {
-    let section: Section
+    let section: AppSection
 
     var body: some View {
         VStack(spacing: 14) {
