@@ -1,10 +1,14 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct ReagentsView: View {
     @Environment(AppStore.self) private var store
     @State private var editing: Reagent?
     @State private var creating = false
     @State private var filter = "all" // all | reagents | buffers
+    @State private var csvDoc = CSVDocument()
+    @State private var showExport = false
+    @State private var showImport = false
 
     private var shown: [Reagent] {
         switch filter {
@@ -39,6 +43,16 @@ struct ReagentsView: View {
             ToolbarItem(placement: .primaryAction) {
                 Button { creating = true } label: { Label("New reagent", systemImage: "plus") }
             }
+            ToolbarItem {
+                Menu {
+                    Button { csvDoc = CSVDocument(text: store.reagentsCSV()); showExport = true } label: {
+                        Label("Export CSV", systemImage: "square.and.arrow.up")
+                    }
+                    Button { showImport = true } label: {
+                        Label("Import CSV", systemImage: "square.and.arrow.down")
+                    }
+                } label: { Image(systemName: "ellipsis.circle") }
+            }
         }
         .overlay {
             if shown.isEmpty {
@@ -49,6 +63,12 @@ struct ReagentsView: View {
         .sheet(item: $editing) { ReagentEditor(reagent: $0) }
         .sheet(isPresented: $creating) {
             ReagentEditor(reagent: nil, initialKind: filter == "buffers" ? "buffer" : "reagent")
+        }
+        .fileExporter(isPresented: $showExport, document: csvDoc,
+                      contentType: .commaSeparatedText, defaultFilename: "reagents") { _ in }
+        .fileImporter(isPresented: $showImport,
+                      allowedContentTypes: [.commaSeparatedText, .plainText]) { result in
+            if case .success(let url) = result { store.importReagentsCSV(readCSV(url)) }
         }
     }
 }

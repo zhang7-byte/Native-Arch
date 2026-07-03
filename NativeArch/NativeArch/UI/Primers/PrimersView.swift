@@ -1,9 +1,13 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct PrimersView: View {
     @Environment(AppStore.self) private var store
     @State private var editing: Primer?
     @State private var creating = false
+    @State private var csvDoc = CSVDocument()
+    @State private var showExport = false
+    @State private var showImport = false
 
     var body: some View {
         List {
@@ -22,6 +26,16 @@ struct PrimersView: View {
             ToolbarItem(placement: .primaryAction) {
                 Button { creating = true } label: { Label("New primer", systemImage: "plus") }
             }
+            ToolbarItem {
+                Menu {
+                    Button { csvDoc = CSVDocument(text: store.primersCSV()); showExport = true } label: {
+                        Label("Export CSV", systemImage: "square.and.arrow.up")
+                    }
+                    Button { showImport = true } label: {
+                        Label("Import CSV", systemImage: "square.and.arrow.down")
+                    }
+                } label: { Image(systemName: "ellipsis.circle") }
+            }
         }
         .overlay {
             if store.primers.isEmpty {
@@ -31,6 +45,12 @@ struct PrimersView: View {
         }
         .sheet(item: $editing) { PrimerEditor(primer: $0) }
         .sheet(isPresented: $creating) { PrimerEditor(primer: nil) }
+        .fileExporter(isPresented: $showExport, document: csvDoc,
+                      contentType: .commaSeparatedText, defaultFilename: "primers") { _ in }
+        .fileImporter(isPresented: $showImport,
+                      allowedContentTypes: [.commaSeparatedText, .plainText]) { result in
+            if case .success(let url) = result { store.importPrimersCSV(readCSV(url)) }
+        }
     }
 }
 

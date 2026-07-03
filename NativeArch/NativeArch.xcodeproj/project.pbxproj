@@ -11,11 +11,14 @@
 		0466FA2C61B06AA03B0220E5 /* NativeArchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DB8F625ABECA9CB57F77E /* NativeArchApp.swift */; };
 		04E4CBF84DAC7BDD993B4A77 /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF219B54831E31EB5B553 /* ProjectsView.swift */; };
 		05A7363A684EFAF23658EC72 /* PlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA861DF29CBF5DDE7EA62D1 /* PlatformImage.swift */; };
+		0EFBD5C76D045F697E6F1407 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB45AD6AC0C4519B1A8BB7 /* CSV.swift */; };
 		149474879CA09C0815ABEF66 /* ReportEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E7C286D95605DBB8EE13D6 /* ReportEditor.swift */; };
 		193EDF93997D2B7ACC0E320B /* AppStore+Primers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9D9991693C55FB50FEAEE /* AppStore+Primers.swift */; };
 		22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936DCAFB8B1EC2B9060A19A /* ExperimentsView.swift */; };
+		29708CBD06ACDD314A9CF734 /* PDFRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0519E9D2F02CBFDF2DE302D /* PDFRender.swift */; };
 		2F049FA827C07EAF0729CDFE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC9B2F887EB1CE25C3242D /* SettingsView.swift */; };
 		313C8DE8BBBD21D570FB028B /* AppStore+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80BB7E91562907496668DC /* AppStore+Settings.swift */; };
+		3E91B6640600AD3C2DEFFE2F /* AppStore+CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC851E2BB8015B4434EC458C /* AppStore+CSV.swift */; };
 		3F85365DF57023003815CBB2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7175B0E9AF87A09AA073D3FC /* Theme.swift */; };
 		4B3A14B57014ABE827CCCFAC /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0264FCE588A7821ED27393D3 /* WorkspaceView.swift */; };
 		4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A68280F0B6D65F7B54D73 /* ExperimentEditor.swift */; };
@@ -51,6 +54,7 @@
 		C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243A492C1466FB36B530263 /* TaskEditor.swift */; };
 		CA8EC62BB22DCEAF9C28D66E /* ProtocolEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */; };
 		D16BF20C48CFF5076453D8D6 /* AppStore+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7518AE56208EB534A326B1 /* AppStore+Protocols.swift */; };
+		D6083EF486EEB354DBAF54E5 /* FileDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A936A1713AA38A7411895991 /* FileDocuments.swift */; };
 		D80E1A66C214F79887397A65 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */; };
 		D8991B2C5F56D6136275D33F /* AttachmentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5C183BBE7F5EE03F37F10 /* AttachmentModels.swift */; };
 		DA1AEF0378B0FF8AE5C43BDC /* ReagentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */; };
@@ -92,11 +96,15 @@
 		97E983CCA1601BF15A42B7A4 /* NativeArch.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NativeArch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9936DCAFB8B1EC2B9060A19A /* ExperimentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentsView.swift; sourceTree = "<group>"; };
 		9E29BA0D699E01EF3470A5FB /* CloneEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloneEditor.swift; sourceTree = "<group>"; };
+		A0519E9D2F02CBFDF2DE302D /* PDFRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFRender.swift; sourceTree = "<group>"; };
 		A243A492C1466FB36B530263 /* TaskEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditor.swift; sourceTree = "<group>"; };
 		A3E7C286D95605DBB8EE13D6 /* ReportEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportEditor.swift; sourceTree = "<group>"; };
 		A77C59C7A7737819049A355E /* PrimerEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimerEditor.swift; sourceTree = "<group>"; };
+		A8DB45AD6AC0C4519B1A8BB7 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
+		A936A1713AA38A7411895991 /* FileDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocuments.swift; sourceTree = "<group>"; };
 		AA853D0D9B3DD88A37585FF3 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		AB0E981BFE4BE23C06AC5116 /* StrainsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsView.swift; sourceTree = "<group>"; };
+		AC851E2BB8015B4434EC458C /* AppStore+CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+CSV.swift"; sourceTree = "<group>"; };
 		B5B69755B3157C310214C437 /* AppStore+ExperimentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+ExperimentDetail.swift"; sourceTree = "<group>"; };
 		B748C879639D15696C4B323F /* AppStore+Reports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Reports.swift"; sourceTree = "<group>"; };
 		C2C5085C6C165E826C3415BF /* PrimersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimersView.swift; sourceTree = "<group>"; };
@@ -255,6 +263,16 @@
 			path = Cultures;
 			sourceTree = "<group>";
 		};
+		762883FC09778AEC280E2246 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				A8DB45AD6AC0C4519B1A8BB7 /* CSV.swift */,
+				A936A1713AA38A7411895991 /* FileDocuments.swift */,
+				A0519E9D2F02CBFDF2DE302D /* PDFRender.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		7D9A8F88ABA78F667B283E94 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +320,7 @@
 			children = (
 				CD480AA71341BB7C2E70CFD6 /* AppStore.swift */,
 				41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */,
+				AC851E2BB8015B4434EC458C /* AppStore+CSV.swift */,
 				16A1273D218695E9CBFBFD3E /* AppStore+Cultures.swift */,
 				B5B69755B3157C310214C437 /* AppStore+ExperimentDetail.swift */,
 				0ED9D9991693C55FB50FEAEE /* AppStore+Primers.swift */,
@@ -334,6 +353,7 @@
 				DC8C33D07EB234AABBA224C1 /* Data */,
 				598DBA646D7954FEF3B19A46 /* Models */,
 				1426F5EE23359547F6809941 /* UI */,
+				762883FC09778AEC280E2246 /* Util */,
 			);
 			path = NativeArch;
 			sourceTree = "<group>";
@@ -402,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E91B6640600AD3C2DEFFE2F /* AppStore+CSV.swift in Sources */,
 				782E9E5583BB53F6FE25C860 /* AppStore+Cloning.swift in Sources */,
 				F8EE4848742142F7442F7ADF /* AppStore+Cultures.swift in Sources */,
 				6B0D7135206C37442C20E71A /* AppStore+ExperimentDetail.swift in Sources */,
@@ -418,6 +439,7 @@
 				D8991B2C5F56D6136275D33F /* AttachmentModels.swift in Sources */,
 				6EFF99C4FA4715C59F7776EF /* BatchModels.swift in Sources */,
 				64BEB1A64709917005451CCE /* BoardView.swift in Sources */,
+				0EFBD5C76D045F697E6F1407 /* CSV.swift in Sources */,
 				B487738058DA9E349298458B /* CloneEditor.swift in Sources */,
 				ACC2745797D990491D839033 /* CloningView.swift in Sources */,
 				E7EF5B145EFD29D8B4145C3F /* CoreModels.swift in Sources */,
@@ -429,8 +451,10 @@
 				8E3D6C2A6B0DC33F7D2F8624 /* DeadlinesView.swift in Sources */,
 				4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */,
 				22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */,
+				D6083EF486EEB354DBAF54E5 /* FileDocuments.swift in Sources */,
 				A5ABEB8210972C8314CEE585 /* Models.swift in Sources */,
 				0466FA2C61B06AA03B0220E5 /* NativeArchApp.swift in Sources */,
+				29708CBD06ACDD314A9CF734 /* PDFRender.swift in Sources */,
 				05A7363A684EFAF23658EC72 /* PlatformImage.swift in Sources */,
 				7766928F6431171E5CADD0DB /* PrimerEditor.swift in Sources */,
 				84FC6540D15C806C70B60AC7 /* PrimersView.swift in Sources */,
