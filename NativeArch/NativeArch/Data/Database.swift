@@ -69,6 +69,59 @@ final class Database {
         );
         """)
         exec("CREATE INDEX IF NOT EXISTS idx_experiments_project ON experiments (project_id);")
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS tasks (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            project_id TEXT REFERENCES projects (id) ON DELETE CASCADE,
+            experiment_id TEXT REFERENCES experiments (id) ON DELETE CASCADE,
+            title TEXT NOT NULL,
+            description TEXT NOT NULL DEFAULT '',
+            due_date INTEGER,
+            status TEXT NOT NULL DEFAULT 'todo',
+            priority TEXT NOT NULL DEFAULT 'medium'
+        );
+        """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS strains (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            name TEXT NOT NULL,
+            serial_number TEXT NOT NULL DEFAULT '',
+            host_organism TEXT NOT NULL DEFAULT '',
+            genotype TEXT NOT NULL DEFAULT '',
+            plasmid TEXT NOT NULL DEFAULT '',
+            construct_notes TEXT NOT NULL DEFAULT '',
+            selection_markers TEXT NOT NULL DEFAULT '[]',
+            freezer_location TEXT NOT NULL DEFAULT '',
+            notes TEXT NOT NULL DEFAULT ''
+        );
+        """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS reagents (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            name TEXT NOT NULL,
+            kind TEXT NOT NULL DEFAULT 'reagent',
+            supplier TEXT NOT NULL DEFAULT '',
+            catalog_no TEXT NOT NULL DEFAULT '',
+            lot TEXT NOT NULL DEFAULT '',
+            location TEXT NOT NULL DEFAULT '',
+            expiry_date INTEGER,
+            quantity TEXT NOT NULL DEFAULT '',
+            recipe TEXT NOT NULL DEFAULT '',
+            notes TEXT NOT NULL DEFAULT ''
+        );
+        """)
     }
 
     // MARK: - Low-level helpers

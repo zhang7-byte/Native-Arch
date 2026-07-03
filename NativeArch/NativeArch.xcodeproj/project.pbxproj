@@ -12,25 +12,45 @@
 		22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936DCAFB8B1EC2B9060A19A /* ExperimentsView.swift */; };
 		3F85365DF57023003815CBB2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7175B0E9AF87A09AA073D3FC /* Theme.swift */; };
 		4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A68280F0B6D65F7B54D73 /* ExperimentEditor.swift */; };
+		5144F1A529277431F79CB51A /* AppStore+Strains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */; };
+		5A602D1A7683BEB3246D6750 /* AppStore+Reagents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE47BD58EB6C7FE9C851AF0F /* AppStore+Reagents.swift */; };
 		66CB7264E7222C816DB60E08 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA853D0D9B3DD88A37585FF3 /* RootView.swift */; };
 		68F46C6B1BB3FEFD839DEFEC /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E4AFF27A9221AF66B35CA /* Database.swift */; };
+		733F73242066BADECB2D1407 /* StrainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0E981BFE4BE23C06AC5116 /* StrainsView.swift */; };
+		935699771D9D10FA9CD0217C /* ReagentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */; };
 		941B7EB8D4779C381960803F /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD480AA71341BB7C2E70CFD6 /* AppStore.swift */; };
 		A32702377707E200EBDB77C9 /* ProjectEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D000F4E97CF88889F0C973DF /* ProjectEditor.swift */; };
 		A5ABEB8210972C8314CEE585 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E56950D4F94BDEBE69A5A /* Models.swift */; };
+		A8DBB06176D09043627C9D38 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74774AC43998BCF21ACD78 /* TasksView.swift */; };
+		B546E9874B579748D7A440E8 /* AppStore+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */; };
+		C269B37F7EA0FFFEED1F63CA /* StrainEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008095114F04374B09057673 /* StrainEditor.swift */; };
+		C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243A492C1466FB36B530263 /* TaskEditor.swift */; };
+		DA1AEF0378B0FF8AE5C43BDC /* ReagentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */; };
+		E7EF5B145EFD29D8B4145C3F /* CoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		008095114F04374B09057673 /* StrainEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainEditor.swift; sourceTree = "<group>"; };
 		069E4AFF27A9221AF66B35CA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		1E74774AC43998BCF21ACD78 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentsView.swift; sourceTree = "<group>"; };
+		2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Strains.swift"; sourceTree = "<group>"; };
+		48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentEditor.swift; sourceTree = "<group>"; };
 		50AFF219B54831E31EB5B553 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
 		6A7E56950D4F94BDEBE69A5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Tasks.swift"; sourceTree = "<group>"; };
 		7175B0E9AF87A09AA073D3FC /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModels.swift; sourceTree = "<group>"; };
 		97E983CCA1601BF15A42B7A4 /* NativeArch.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NativeArch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9936DCAFB8B1EC2B9060A19A /* ExperimentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentsView.swift; sourceTree = "<group>"; };
+		A243A492C1466FB36B530263 /* TaskEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditor.swift; sourceTree = "<group>"; };
 		AA853D0D9B3DD88A37585FF3 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		AB0E981BFE4BE23C06AC5116 /* StrainsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainsView.swift; sourceTree = "<group>"; };
 		C54DB8F625ABECA9CB57F77E /* NativeArchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeArchApp.swift; sourceTree = "<group>"; };
 		CD480AA71341BB7C2E70CFD6 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		CE7A68280F0B6D65F7B54D73 /* ExperimentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentEditor.swift; sourceTree = "<group>"; };
 		D000F4E97CF88889F0C973DF /* ProjectEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditor.swift; sourceTree = "<group>"; };
+		FE47BD58EB6C7FE9C851AF0F /* AppStore+Reagents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Reagents.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -56,9 +76,21 @@
 				AA853D0D9B3DD88A37585FF3 /* RootView.swift */,
 				24151E15258D90A3381D7329 /* Experiments */,
 				3CE6F055ABB987B981467FF3 /* Projects */,
+				3CFA6ECF9E7C8C291208E29B /* Reagents */,
+				A2288A4F2A246883871071DF /* Strains */,
+				17A5B67BEA5D2E790795EBAB /* Tasks */,
 				BDD993008E747AEACC835689 /* Theme */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		17A5B67BEA5D2E790795EBAB /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				A243A492C1466FB36B530263 /* TaskEditor.swift */,
+				1E74774AC43998BCF21ACD78 /* TasksView.swift */,
+			);
+			path = Tasks;
 			sourceTree = "<group>";
 		};
 		24151E15258D90A3381D7329 /* Experiments */ = {
@@ -79,12 +111,31 @@
 			path = Projects;
 			sourceTree = "<group>";
 		};
+		3CFA6ECF9E7C8C291208E29B /* Reagents */ = {
+			isa = PBXGroup;
+			children = (
+				48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */,
+				21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */,
+			);
+			path = Reagents;
+			sourceTree = "<group>";
+		};
 		598DBA646D7954FEF3B19A46 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */,
 				6A7E56950D4F94BDEBE69A5A /* Models.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A2288A4F2A246883871071DF /* Strains */ = {
+			isa = PBXGroup;
+			children = (
+				008095114F04374B09057673 /* StrainEditor.swift */,
+				AB0E981BFE4BE23C06AC5116 /* StrainsView.swift */,
+			);
+			path = Strains;
 			sourceTree = "<group>";
 		};
 		BDD993008E747AEACC835689 /* Theme */ = {
@@ -99,6 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				CD480AA71341BB7C2E70CFD6 /* AppStore.swift */,
+				FE47BD58EB6C7FE9C851AF0F /* AppStore+Reagents.swift */,
+				2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */,
+				6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */,
 				069E4AFF27A9221AF66B35CA /* Database.swift */,
 			);
 			path = Data;
@@ -170,7 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A602D1A7683BEB3246D6750 /* AppStore+Reagents.swift in Sources */,
+				5144F1A529277431F79CB51A /* AppStore+Strains.swift in Sources */,
+				B546E9874B579748D7A440E8 /* AppStore+Tasks.swift in Sources */,
 				941B7EB8D4779C381960803F /* AppStore.swift in Sources */,
+				E7EF5B145EFD29D8B4145C3F /* CoreModels.swift in Sources */,
 				68F46C6B1BB3FEFD839DEFEC /* Database.swift in Sources */,
 				4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */,
 				22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */,
@@ -178,7 +236,13 @@
 				0466FA2C61B06AA03B0220E5 /* NativeArchApp.swift in Sources */,
 				A32702377707E200EBDB77C9 /* ProjectEditor.swift in Sources */,
 				04E4CBF84DAC7BDD993B4A77 /* ProjectsView.swift in Sources */,
+				935699771D9D10FA9CD0217C /* ReagentEditor.swift in Sources */,
+				DA1AEF0378B0FF8AE5C43BDC /* ReagentsView.swift in Sources */,
 				66CB7264E7222C816DB60E08 /* RootView.swift in Sources */,
+				C269B37F7EA0FFFEED1F63CA /* StrainEditor.swift in Sources */,
+				733F73242066BADECB2D1407 /* StrainsView.swift in Sources */,
+				C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */,
+				A8DBB06176D09043627C9D38 /* TasksView.swift in Sources */,
 				3F85365DF57023003815CBB2 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

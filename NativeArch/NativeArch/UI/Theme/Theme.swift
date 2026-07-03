@@ -22,6 +22,15 @@ enum Palette {
         }
     }
 
+    static func color(for s: TaskStatus) -> Color {
+        switch s {
+        case .todo: return .gray
+        case .doing: return .blue
+        case .done: return .green
+        case .blocked: return .red
+        }
+    }
+
     static func color(for p: Priority) -> Color {
         switch p {
         case .low: return .green

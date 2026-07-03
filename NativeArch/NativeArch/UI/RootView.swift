@@ -51,7 +51,12 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
-    var implemented: Bool { self == .projects || self == .experiments }
+    var implemented: Bool {
+        switch self {
+        case .projects, .experiments, .tasks, .strains, .reagents: return true
+        default: return false
+        }
+    }
 }
 
 /// Liquid Glass navigation shell: a sidebar of sections with a detail pane.
@@ -69,6 +74,9 @@ struct RootView: View {
             switch selection ?? .projects {
             case .projects: ProjectsView()
             case .experiments: ExperimentsView()
+            case .tasks: TasksView()
+            case .strains: StrainsView()
+            case .reagents: ReagentsView()
             default: ComingSoonView(section: selection ?? .dashboard)
             }
         }

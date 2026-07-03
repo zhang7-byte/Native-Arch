@@ -6,14 +6,21 @@ import Observation
 /// relevant cache (ordered newest-first, matching the Flutter app).
 @Observable
 final class AppStore {
-    private let db = Database()
+    let db = Database()
 
     private(set) var projects: [Project] = []
     private(set) var experiments: [Experiment] = []
+    // Settable across files so the per-section repository extensions can refresh.
+    var tasks: [Task] = []
+    var strains: [Strain] = []
+    var reagents: [Reagent] = []
 
     init() {
         reloadProjects()
         reloadExperiments()
+        reloadTasks()
+        reloadStrains()
+        reloadReagents()
     }
 
     // MARK: - Projects
