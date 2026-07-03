@@ -497,7 +497,8 @@ final class Database {
             case let v as Double:
                 sqlite3_bind_double(stmt, idx, v)
             case let v as Date:
-                sqlite3_bind_int64(stmt, idx, Int64(v.timeIntervalSince1970))
+                // Match the Flutter/drift store (storeDateTimeAsText): ISO-8601.
+                sqlite3_bind_text(stmt, idx, DriftDate.string(v), -1, SQLITE_TRANSIENT)
             case let v as Data:
                 v.withUnsafeBytes { raw in
                     sqlite3_bind_blob(stmt, idx, raw.baseAddress, Int32(v.count), SQLITE_TRANSIENT)
@@ -528,7 +529,14 @@ struct Row {
 
     func date(_ name: String) -> Date? {
         guard let i = index(name), sqlite3_column_type(stmt, i) != SQLITE_NULL else { return nil }
-        return Date(timeIntervalSince1970: TimeInterval(sqlite3_column_int64(stmt, i)))
+        // Dates are ISO-8601 text (drift storeDateTimeAsText). Fall back to a
+        // legacy integer-seconds value if any old row still holds one.
+        if let c = sqlite3_column_text(stmt, i) {
+            let s = String(cString: c)
+            if let d = DriftDate.parse(s) { return d }
+            if let secs = Int64(s) { return Date(timeIntervalSince1970: TimeInterval(secs)) }
+        }
+        return nil
     }
 
     func int(_ name: String) -> Int64? {
@@ -548,6 +556,38 @@ struct Row {
         guard let data = raw.data(using: .utf8),
               let arr = try? JSONSerialization.jsonObject(with: data) as? [String] else { return [] }
         return arr
+    }
+}
+
+/// ISO-8601 date text compatible with the Flutter/drift `storeDateTimeAsText`
+/// format (UTC, 'T' separator, fractional seconds, trailing 'Z'). Reading is
+/// lenient to also accept space-separated and non-fractional variants.
+enum DriftDate {
+    private static let writer: ISO8601DateFormatter = {
+        let f = ISO8601DateFormatter()
+        f.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return f
+    }()
+
+    static func string(_ date: Date) -> String { writer.string(from: date) }
+
+    static func parse(_ s: String) -> Date? {
+        let iso1 = ISO8601DateFormatter()
+        iso1.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let d = iso1.date(from: s) { return d }
+        let iso2 = ISO8601DateFormatter()
+        iso2.formatOptions = [.withInternetDateTime]
+        if let d = iso2.date(from: s) { return d }
+        // Space-separated / microsecond variants drift may emit.
+        for fmt in ["yyyy-MM-dd'T'HH:mm:ss.SSSSSS", "yyyy-MM-dd HH:mm:ss.SSSSSS",
+                    "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd"] {
+            let df = DateFormatter()
+            df.locale = Locale(identifier: "en_US_POSIX")
+            df.timeZone = TimeZone(identifier: "UTC")
+            df.dateFormat = fmt
+            if let d = df.date(from: s) { return d }
+        }
+        return nil
     }
 }
 
