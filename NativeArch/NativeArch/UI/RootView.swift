@@ -54,7 +54,8 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
     var implemented: Bool {
         switch self {
         case .projects, .experiments, .tasks, .strains, .reagents, .cultures,
-             .primers, .cloning, .protocols, .report: return true
+             .primers, .cloning, .protocols, .report,
+             .dashboard, .board, .deadlines: return true
         default: return false
         }
     }
@@ -73,6 +74,9 @@ struct RootView: View {
             .navigationTitle("LabTrack")
         } detail: {
             switch selection ?? .projects {
+            case .dashboard: DashboardView()
+            case .board: BoardView()
+            case .deadlines: DeadlinesView()
             case .projects: ProjectsView()
             case .experiments: ExperimentsView()
             case .tasks: TasksView()
