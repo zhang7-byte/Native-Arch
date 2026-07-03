@@ -122,6 +122,71 @@ final class Database {
             notes TEXT NOT NULL DEFAULT ''
         );
         """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS primers (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            name TEXT NOT NULL,
+            serial_number TEXT NOT NULL DEFAULT '',
+            sequence TEXT NOT NULL DEFAULT '',
+            target_gene TEXT NOT NULL DEFAULT '',
+            direction TEXT NOT NULL DEFAULT '',
+            tm TEXT NOT NULL DEFAULT '',
+            supplier TEXT NOT NULL DEFAULT '',
+            notes TEXT NOT NULL DEFAULT ''
+        );
+        """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS protocols (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            name TEXT NOT NULL,
+            category TEXT NOT NULL DEFAULT '',
+            summary TEXT NOT NULL DEFAULT '',
+            steps TEXT NOT NULL DEFAULT '[]',
+            step_ids TEXT NOT NULL DEFAULT '[]',
+            materials TEXT NOT NULL DEFAULT '',
+            notes TEXT NOT NULL DEFAULT ''
+        );
+        """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS reports (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            title TEXT NOT NULL DEFAULT 'Progress report',
+            recipient TEXT NOT NULL DEFAULT '',
+            author TEXT NOT NULL DEFAULT '',
+            period_start INTEGER,
+            period_end INTEGER,
+            summary TEXT NOT NULL DEFAULT '',
+            project_ids TEXT NOT NULL DEFAULT '[]',
+            experiment_ids TEXT NOT NULL DEFAULT '[]'
+        );
+        """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS clone_constructions (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            name TEXT NOT NULL DEFAULT '',
+            notes TEXT NOT NULL DEFAULT '',
+            backbone_name TEXT NOT NULL DEFAULT '',
+            backbone_strain_id TEXT NOT NULL DEFAULT '',
+            enzymes TEXT NOT NULL DEFAULT '',
+            fragments TEXT NOT NULL DEFAULT '[]'
+        );
+        """)
     }
 
     // MARK: - Low-level helpers

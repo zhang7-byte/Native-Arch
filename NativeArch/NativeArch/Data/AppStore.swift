@@ -14,6 +14,10 @@ final class AppStore {
     var tasks: [Task] = []
     var strains: [Strain] = []
     var reagents: [Reagent] = []
+    var primers: [Primer] = []
+    var protocols: [LabProtocol] = []
+    var reports: [Report] = []
+    var clones: [CloneConstruction] = []
 
     init() {
         reloadProjects()
@@ -21,6 +25,10 @@ final class AppStore {
         reloadTasks()
         reloadStrains()
         reloadReagents()
+        reloadPrimers()
+        reloadProtocols()
+        reloadReports()
+        reloadClones()
     }
 
     // MARK: - Projects

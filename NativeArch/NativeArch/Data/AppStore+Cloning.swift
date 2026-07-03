@@ -1,0 +1,46 @@
+import Foundation
+
+extension AppStore {
+    func reloadClones() {
+        clones = db.query("SELECT * FROM clone_constructions ORDER BY updated_at DESC") { r in
+            CloneConstruction(
+                id: r.string("id"),
+                name: r.string("name"),
+                notes: r.string("notes"),
+                backboneName: r.string("backbone_name"),
+                backboneStrainId: r.string("backbone_strain_id"),
+                enzymes: r.string("enzymes"),
+                fragments: decodeFragments(r.string("fragments")),
+                createdAt: r.date("created_at") ?? Date(),
+                updatedAt: r.date("updated_at") ?? Date()
+            )
+        }
+    }
+
+    func saveClone(_ c: CloneConstruction) {
+        let now = Date()
+        if clones.contains(where: { $0.id == c.id }) {
+            db.run("""
+                UPDATE clone_constructions SET name=?, notes=?, backbone_name=?,
+                    backbone_strain_id=?, enzymes=?, fragments=?, updated_at=? WHERE id=?
+                """,
+                [c.name, c.notes, c.backboneName, c.backboneStrainId, c.enzymes,
+                 encodeFragments(c.fragments), now, c.id])
+        } else {
+            db.run("""
+                INSERT INTO clone_constructions
+                    (id, created_at, updated_at, workspace_id, name, notes,
+                     backbone_name, backbone_strain_id, enzymes, fragments)
+                VALUES (?,?,?,?,?,?,?,?,?,?)
+                """,
+                [c.id, now, now, "", c.name, c.notes, c.backboneName,
+                 c.backboneStrainId, c.enzymes, encodeFragments(c.fragments)])
+        }
+        reloadClones()
+    }
+
+    func deleteClone(_ id: String) {
+        db.run("DELETE FROM clone_constructions WHERE id=?", [id])
+        reloadClones()
+    }
+}

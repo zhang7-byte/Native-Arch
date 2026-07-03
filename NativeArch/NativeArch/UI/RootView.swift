@@ -53,7 +53,8 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
 
     var implemented: Bool {
         switch self {
-        case .projects, .experiments, .tasks, .strains, .reagents: return true
+        case .projects, .experiments, .tasks, .strains, .reagents,
+             .primers, .cloning, .protocols, .report: return true
         default: return false
         }
     }
@@ -77,6 +78,10 @@ struct RootView: View {
             case .tasks: TasksView()
             case .strains: StrainsView()
             case .reagents: ReagentsView()
+            case .primers: PrimersView()
+            case .cloning: CloningView()
+            case .protocols: ProtocolsView()
+            case .report: ReportsView()
             default: ComingSoonView(section: selection ?? .dashboard)
             }
         }
