@@ -2,12 +2,15 @@ import SwiftUI
 
 struct CloudSyncView: View {
     @Environment(AuthService.self) private var auth
+    @Environment(AppStore.self) private var store
     @Environment(\.dismiss) private var dismiss
 
     @State private var url = ""
     @State private var anonKey = ""
     @State private var email = ""
     @State private var password = ""
+    @State private var syncStatus = ""
+    @State private var syncing = false
 
     var body: some View {
         NavigationStack {
@@ -16,6 +19,23 @@ struct CloudSyncView: View {
                     Section("Signed in") {
                         LabeledContent("Account", value: auth.email)
                         Button("Sign out", role: .destructive) { auth.signOut() }
+                    }
+                    Section("Sync") {
+                        Button {
+                            syncing = true; syncStatus = ""
+                            Swift.Task {
+                                let msg = await store.push(using: auth)
+                                syncStatus = msg; syncing = false
+                            }
+                        } label: {
+                            Label("Push to cloud", systemImage: "arrow.up.circle")
+                        }
+                        .disabled(syncing)
+                        if !syncStatus.isEmpty {
+                            Text(syncStatus).font(.footnote).foregroundStyle(.secondary)
+                        }
+                        Text("Push uploads this device's records to Supabase (upsert, newest wins). Pull is added next.")
+                            .font(.footnote).foregroundStyle(.secondary)
                     }
                 } else {
                     Section("Supabase project") {

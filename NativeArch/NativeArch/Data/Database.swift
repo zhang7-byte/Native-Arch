@@ -347,6 +347,30 @@ final class Database {
         return String(data: data, encoding: .utf8)
     }
 
+    /// All rows of a table as typed dictionaries (Int64 / Double / String / NSNull).
+    func allRows(_ table: String) -> [[String: Any]] {
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, "SELECT * FROM \(table)", -1, &stmt, nil) == SQLITE_OK
+        else { return [] }
+        defer { sqlite3_finalize(stmt) }
+        var out: [[String: Any]] = []
+        while sqlite3_step(stmt) == SQLITE_ROW {
+            var obj: [String: Any] = [:]
+            for i in 0..<sqlite3_column_count(stmt) {
+                let name = String(cString: sqlite3_column_name(stmt, i))
+                switch sqlite3_column_type(stmt, i) {
+                case SQLITE_INTEGER: obj[name] = sqlite3_column_int64(stmt, i)
+                case SQLITE_FLOAT: obj[name] = sqlite3_column_double(stmt, i)
+                case SQLITE_NULL: obj[name] = NSNull()
+                default:
+                    if let c = sqlite3_column_text(stmt, i) { obj[name] = String(cString: c) }
+                }
+            }
+            out.append(obj)
+        }
+        return out
+    }
+
     /// Re-insert a row captured by [rowJSON].
     func insertRow(_ table: String, json: String) {
         guard let data = json.data(using: .utf8),
