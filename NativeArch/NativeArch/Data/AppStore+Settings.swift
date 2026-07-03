@@ -39,5 +39,6 @@ extension AppStore {
             [s.themeMode, s.accentColor, s.density, s.notifyFrequency,
              s.holidayRegion, s.scheduleNotify ? 1 : 0, now])
         settings = s
+        refreshNotifications()
     }
 }

@@ -38,11 +38,13 @@ extension AppStore {
                  t.description, t.dueDate, t.status.rawValue, t.priority.rawValue])
         }
         reloadTasks()
+        refreshNotifications()
     }
 
     func deleteTask(_ id: String) {
         moveToTrash(table: "tasks", id: id, kind: "Task",
                     label: tasks.first { $0.id == id }?.title ?? "Task")
         reloadTasks()
+        refreshNotifications()
     }
 }

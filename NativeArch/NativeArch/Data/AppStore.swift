@@ -31,6 +31,13 @@ final class AppStore {
         ensureCurrentWorkspace()   // sets/creates the current workspace + backfills
         reloadAll()
         loadSettings()
+        NotificationService.requestAuthorization()
+        refreshNotifications()
+    }
+
+    /// Re-sync scheduled deadline reminders with the current tasks + settings.
+    func refreshNotifications() {
+        NotificationService.reschedule(tasks: tasks, settings: settings)
     }
 
     /// Reload every workspace-scoped cache (called on launch and after switching).

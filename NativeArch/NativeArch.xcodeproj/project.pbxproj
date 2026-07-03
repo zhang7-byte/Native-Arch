@@ -66,6 +66,7 @@
 		E7EF5B145EFD29D8B4145C3F /* CoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */; };
 		F400621DF6B7783953659C06 /* SystemModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC623E40E858D8D6D7AC0A0 /* SystemModels.swift */; };
 		F8EE4848742142F7442F7ADF /* AppStore+Cultures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1273D218695E9CBFBFD3E /* AppStore+Cultures.swift */; };
+		F9D545F366518E75689E5DD8 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C17ACB6352899ECD431846A /* NotificationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentEditor.swift; sourceTree = "<group>"; };
 		4AAB78716B823D91F25EE0A6 /* DeadlinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinesView.swift; sourceTree = "<group>"; };
 		4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolEditor.swift; sourceTree = "<group>"; };
+		4C17ACB6352899ECD431846A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		50AFF219B54831E31EB5B553 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
 		583C2FEF54D9119EF6329BA4 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		6A7E56950D4F94BDEBE69A5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			children = (
 				A8DB45AD6AC0C4519B1A8BB7 /* CSV.swift */,
 				A936A1713AA38A7411895991 /* FileDocuments.swift */,
+				4C17ACB6352899ECD431846A /* NotificationService.swift */,
 				A0519E9D2F02CBFDF2DE302D /* PDFRender.swift */,
 			);
 			path = Util;
@@ -472,6 +475,7 @@
 				D6083EF486EEB354DBAF54E5 /* FileDocuments.swift in Sources */,
 				A5ABEB8210972C8314CEE585 /* Models.swift in Sources */,
 				0466FA2C61B06AA03B0220E5 /* NativeArchApp.swift in Sources */,
+				F9D545F366518E75689E5DD8 /* NotificationService.swift in Sources */,
 				29708CBD06ACDD314A9CF734 /* PDFRender.swift in Sources */,
 				05A7363A684EFAF23658EC72 /* PlatformImage.swift in Sources */,
 				7766928F6431171E5CADD0DB /* PrimerEditor.swift in Sources */,
