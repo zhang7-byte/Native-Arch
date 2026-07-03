@@ -70,6 +70,121 @@ extension AppStore {
         return out
     }
 
+    // MARK: - Pull
+
+    /// Fetch rows changed since the last cursor, upsert locally (last-writer-wins
+    /// by updated_at), and apply tombstones. Advances the cursor on success.
+    func pull(using auth: AuthService) async -> String {
+        guard auth.config.isConfigured, let session = auth.session else {
+            return "Not signed in."
+        }
+        let cursor = db.meta("last_sync") ?? "1970-01-01T00:00:00Z"
+        let started = Date()
+        var pulled = 0
+        for table in Self.syncTables {
+            let (rows, err) = await fetch(table: table, config: auth.config,
+                token: session.accessToken,
+                query: [URLQueryItem(name: "updated_at", value: "gt.\(cursor)"),
+                        URLQueryItem(name: "order", value: "updated_at.asc")])
+            if let err { return "Pull failed on \(table): \(err)" }
+            for row in rows ?? [] {
+                guard let id = row["id"] as? String else { continue }
+                let local = transformFromServer(table: table, row: row)
+                let serverUpd = (local["updated_at"] as? Int64) ?? 0
+                let localUpd = localUpdatedAt(table, id)
+                if localUpd == nil || serverUpd >= localUpd! {
+                    db.upsertRow(table, local); pulled += 1
+                }
+            }
+        }
+        // Deletions.
+        let (tombs, _) = await fetch(table: "tombstones", config: auth.config,
+            token: session.accessToken,
+            query: [URLQueryItem(name: "deleted_at", value: "gt.\(cursor)")])
+        for t in tombs ?? [] {
+            if let tbl = t["table_name"] as? String, let id = t["id"] as? String {
+                db.run("DELETE FROM \(tbl) WHERE id=?", [id])
+            }
+        }
+        db.setMeta("last_sync", Self.iso.string(from: started))
+        await MainActor.run { reloadAll(); reloadTrash() }
+        return "Pulled \(pulled) records."
+    }
+
+    /// Push then pull.
+    func syncNow(using auth: AuthService) async -> String {
+        let p = await push(using: auth)
+        if p.hasPrefix("Push failed") || p == "Not signed in." { return p }
+        let q = await pull(using: auth)
+        return "\(p) \(q)"
+    }
+
+    private func localUpdatedAt(_ table: String, _ id: String) -> Int64? {
+        (db.query("SELECT updated_at FROM \(table) WHERE id=?", [id]) { $0.int("updated_at") }.first) ?? nil
+    }
+
+    private func transformFromServer(table: String, row: [String: Any]) -> [String: Any] {
+        let dates = Self.dateColumns[table] ?? []
+        let bools = Self.boolColumns[table] ?? []
+        var out: [String: Any] = [:]
+        for (k, v) in row {
+            if dates.contains(k) {
+                if let s = v as? String, let d = Self.parseISO(s) {
+                    out[k] = Int64(d.timeIntervalSince1970)
+                } else { out[k] = NSNull() }
+            } else if bools.contains(k) {
+                if let b = v as? Bool { out[k] = b ? 1 : 0 }
+                else if let n = v as? Int { out[k] = n } else { out[k] = v }
+            } else if let arr = v as? [Any] {          // jsonb list → JSON text
+                out[k] = jsonText(arr)
+            } else if let dict = v as? [String: Any] {
+                out[k] = jsonText(dict)
+            } else {
+                out[k] = v
+            }
+        }
+        return out
+    }
+
+    private func jsonText(_ obj: Any) -> String {
+        guard let d = try? JSONSerialization.data(withJSONObject: obj),
+              let s = String(data: d, encoding: .utf8) else { return "[]" }
+        return s
+    }
+
+    private func fetch(table: String, config: SyncConfig, token: String,
+                       query: [URLQueryItem]) async -> ([[String: Any]]?, String?) {
+        guard var comps = URLComponents(string: "\(config.base)/rest/v1/\(table)") else {
+            return (nil, "bad URL")
+        }
+        comps.queryItems = query
+        guard let url = comps.url else { return (nil, "bad URL") }
+        var req = URLRequest(url: url)
+        req.setValue(config.anonKey, forHTTPHeaderField: "apikey")
+        req.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        req.setValue("application/json", forHTTPHeaderField: "Accept")
+        do {
+            let (data, resp) = try await URLSession.shared.data(for: req)
+            let code = (resp as? HTTPURLResponse)?.statusCode ?? 0
+            guard (200..<300).contains(code) else {
+                return (nil, "HTTP \(code): \(String(decoding: data, as: UTF8.self).prefix(160))")
+            }
+            let arr = (try? JSONSerialization.jsonObject(with: data)) as? [[String: Any]] ?? []
+            return (arr, nil)
+        } catch {
+            return (nil, error.localizedDescription)
+        }
+    }
+
+    private static func parseISO(_ s: String) -> Date? {
+        let f1 = ISO8601DateFormatter()
+        f1.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let d = f1.date(from: s) { return d }
+        let f2 = ISO8601DateFormatter()
+        f2.formatOptions = [.withInternetDateTime]
+        return f2.date(from: s)
+    }
+
     private func upsert(table: String, rows: [[String: Any]], config: SyncConfig,
                         token: String) async -> (ok: Bool, message: String) {
         guard let url = URL(string: "\(config.base)/rest/v1/\(table)") else {

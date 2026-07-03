@@ -21,20 +21,19 @@ struct CloudSyncView: View {
                         Button("Sign out", role: .destructive) { auth.signOut() }
                     }
                     Section("Sync") {
-                        Button {
-                            syncing = true; syncStatus = ""
-                            Swift.Task {
-                                let msg = await store.push(using: auth)
-                                syncStatus = msg; syncing = false
-                            }
-                        } label: {
+                        Button { run { await store.syncNow(using: auth) } } label: {
+                            Label("Sync now", systemImage: "arrow.triangle.2.circlepath")
+                        }.disabled(syncing)
+                        Button { run { await store.push(using: auth) } } label: {
                             Label("Push to cloud", systemImage: "arrow.up.circle")
-                        }
-                        .disabled(syncing)
+                        }.disabled(syncing)
+                        Button { run { await store.pull(using: auth) } } label: {
+                            Label("Pull from cloud", systemImage: "arrow.down.circle")
+                        }.disabled(syncing)
                         if !syncStatus.isEmpty {
                             Text(syncStatus).font(.footnote).foregroundStyle(.secondary)
                         }
-                        Text("Push uploads this device's records to Supabase (upsert, newest wins). Pull is added next.")
+                        Text("Sync upserts records both ways (newest wins) and applies deletions via tombstones.")
                             .font(.footnote).foregroundStyle(.secondary)
                     }
                 } else {
@@ -67,6 +66,14 @@ struct CloudSyncView: View {
             }
             .onAppear { url = auth.config.url; anonKey = auth.config.anonKey }
             .overlay { if auth.busy { ProgressView().controlSize(.large) } }
+        }
+    }
+
+    private func run(_ op: @escaping () async -> String) {
+        syncing = true; syncStatus = ""
+        Swift.Task {
+            let msg = await op()
+            syncStatus = msg; syncing = false
         }
     }
 

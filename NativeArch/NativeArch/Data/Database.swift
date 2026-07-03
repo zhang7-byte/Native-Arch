@@ -320,6 +320,41 @@ final class Database {
             payload TEXT NOT NULL
         );
         """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS sync_meta (
+            key TEXT NOT NULL PRIMARY KEY,
+            value TEXT NOT NULL DEFAULT ''
+        );
+        """)
+    }
+
+    /// key/value read + write for sync bookkeeping (e.g. the last-sync cursor).
+    func meta(_ key: String) -> String? {
+        query("SELECT value FROM sync_meta WHERE key=?", [key]) { $0.string("value") }.first
+    }
+
+    func setMeta(_ key: String, _ value: String) {
+        run("INSERT INTO sync_meta (key, value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
+            [key, value])
+    }
+
+    /// Upsert a typed dictionary (used when applying pulled rows).
+    func upsertRow(_ table: String, _ obj: [String: Any]) {
+        let cols = Array(obj.keys)
+        guard !cols.isEmpty else { return }
+        let colList = cols.joined(separator: ",")
+        let placeholders = cols.map { _ in "?" }.joined(separator: ",")
+        let params: [Any?] = cols.map { key in
+            let v = obj[key]
+            if v is NSNull { return nil }
+            if let n = v as? Int { return n }
+            if let n = v as? Int64 { return Int(n) }
+            if let d = v as? Double { return d }
+            if let b = v as? Bool { return b ? 1 : 0 }
+            return v as? String
+        }
+        run("INSERT OR REPLACE INTO \(table) (\(colList)) VALUES (\(placeholders))", params)
     }
 
     // MARK: - Generic row capture / restore (for Trash)
@@ -476,6 +511,11 @@ struct Row {
     func date(_ name: String) -> Date? {
         guard let i = index(name), sqlite3_column_type(stmt, i) != SQLITE_NULL else { return nil }
         return Date(timeIntervalSince1970: TimeInterval(sqlite3_column_int64(stmt, i)))
+    }
+
+    func int(_ name: String) -> Int64? {
+        guard let i = index(name), sqlite3_column_type(stmt, i) != SQLITE_NULL else { return nil }
+        return sqlite3_column_int64(stmt, i)
     }
 
     func blob(_ name: String) -> Data? {
