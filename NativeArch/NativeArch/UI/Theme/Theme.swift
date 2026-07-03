@@ -31,6 +31,14 @@ enum Palette {
         }
     }
 
+    static func color(for s: CultureStatus) -> Color {
+        switch s {
+        case .active: return .green
+        case .terminated: return .red
+        case .archived: return .brown
+        }
+    }
+
     static func color(for p: Priority) -> Color {
         switch p {
         case .low: return .green

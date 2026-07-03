@@ -21,6 +21,7 @@
 		6D6ACFC5951BC2EF2D00C1F3 /* ProtocolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21214989CC7597CCE00C796C /* ProtocolsView.swift */; };
 		6EFF99C4FA4715C59F7776EF /* BatchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D7A108F2927D547197E300 /* BatchModels.swift */; };
 		733F73242066BADECB2D1407 /* StrainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0E981BFE4BE23C06AC5116 /* StrainsView.swift */; };
+		755122D9E4F586984192A3DB /* CulturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED1A8539B02544D90A22040 /* CulturesView.swift */; };
 		7766928F6431171E5CADD0DB /* PrimerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C59C7A7737819049A355E /* PrimerEditor.swift */; };
 		782E9E5583BB53F6FE25C860 /* AppStore+Cloning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */; };
 		84FC6540D15C806C70B60AC7 /* PrimersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C5085C6C165E826C3415BF /* PrimersView.swift */; };
@@ -29,9 +30,11 @@
 		A32702377707E200EBDB77C9 /* ProjectEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D000F4E97CF88889F0C973DF /* ProjectEditor.swift */; };
 		A5ABEB8210972C8314CEE585 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E56950D4F94BDEBE69A5A /* Models.swift */; };
 		A8DBB06176D09043627C9D38 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74774AC43998BCF21ACD78 /* TasksView.swift */; };
+		AA61745C6709E11CBAF1C52C /* CultureEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F78793341CB51AA6876CB3 /* CultureEditor.swift */; };
 		ACC2745797D990491D839033 /* CloningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AF475920105BB92C31693 /* CloningView.swift */; };
 		B487738058DA9E349298458B /* CloneEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E29BA0D699E01EF3470A5FB /* CloneEditor.swift */; };
 		B546E9874B579748D7A440E8 /* AppStore+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */; };
+		B915DE3BCA0BCA710E696B89 /* CultureModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B4B461E647AB396F0606F /* CultureModels.swift */; };
 		BBC956CF01D8145C447259B9 /* AppStore+Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748C879639D15696C4B323F /* AppStore+Reports.swift */; };
 		C269B37F7EA0FFFEED1F63CA /* StrainEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008095114F04374B09057673 /* StrainEditor.swift */; };
 		C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243A492C1466FB36B530263 /* TaskEditor.swift */; };
@@ -40,6 +43,7 @@
 		D80E1A66C214F79887397A65 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */; };
 		DA1AEF0378B0FF8AE5C43BDC /* ReagentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */; };
 		E7EF5B145EFD29D8B4145C3F /* CoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */; };
+		F8EE4848742142F7442F7ADF /* AppStore+Cultures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1273D218695E9CBFBFD3E /* AppStore+Cultures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,11 +51,13 @@
 		069E4AFF27A9221AF66B35CA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		0A7518AE56208EB534A326B1 /* AppStore+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Protocols.swift"; sourceTree = "<group>"; };
 		0ED9D9991693C55FB50FEAEE /* AppStore+Primers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Primers.swift"; sourceTree = "<group>"; };
+		16A1273D218695E9CBFBFD3E /* AppStore+Cultures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Cultures.swift"; sourceTree = "<group>"; };
 		1E74774AC43998BCF21ACD78 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		21214989CC7597CCE00C796C /* ProtocolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsView.swift; sourceTree = "<group>"; };
 		21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentsView.swift; sourceTree = "<group>"; };
 		2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Strains.swift"; sourceTree = "<group>"; };
 		3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		40F78793341CB51AA6876CB3 /* CultureEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureEditor.swift; sourceTree = "<group>"; };
 		41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Cloning.swift"; sourceTree = "<group>"; };
 		48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentEditor.swift; sourceTree = "<group>"; };
 		4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolEditor.swift; sourceTree = "<group>"; };
@@ -59,6 +65,7 @@
 		6A7E56950D4F94BDEBE69A5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Tasks.swift"; sourceTree = "<group>"; };
 		7175B0E9AF87A09AA073D3FC /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		752B4B461E647AB396F0606F /* CultureModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureModels.swift; sourceTree = "<group>"; };
 		7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModels.swift; sourceTree = "<group>"; };
 		92D7A108F2927D547197E300 /* BatchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchModels.swift; sourceTree = "<group>"; };
 		97E983CCA1601BF15A42B7A4 /* NativeArch.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NativeArch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +84,7 @@
 		D000F4E97CF88889F0C973DF /* ProjectEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditor.swift; sourceTree = "<group>"; };
 		D28AF475920105BB92C31693 /* CloningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloningView.swift; sourceTree = "<group>"; };
 		FE47BD58EB6C7FE9C851AF0F /* AppStore+Reagents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Reagents.swift"; sourceTree = "<group>"; };
+		FED1A8539B02544D90A22040 /* CulturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulturesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -101,6 +109,7 @@
 			children = (
 				AA853D0D9B3DD88A37585FF3 /* RootView.swift */,
 				419EB45575590F01C825EB42 /* Cloning */,
+				70DED51601E5627AAE51E9DC /* Cultures */,
 				24151E15258D90A3381D7329 /* Experiments */,
 				247BE398F71024C54F01F8C7 /* Primers */,
 				3CE6F055ABB987B981467FF3 /* Projects */,
@@ -173,9 +182,19 @@
 			children = (
 				92D7A108F2927D547197E300 /* BatchModels.swift */,
 				7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */,
+				752B4B461E647AB396F0606F /* CultureModels.swift */,
 				6A7E56950D4F94BDEBE69A5A /* Models.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		70DED51601E5627AAE51E9DC /* Cultures */ = {
+			isa = PBXGroup;
+			children = (
+				40F78793341CB51AA6876CB3 /* CultureEditor.swift */,
+				FED1A8539B02544D90A22040 /* CulturesView.swift */,
+			);
+			path = Cultures;
 			sourceTree = "<group>";
 		};
 		A2288A4F2A246883871071DF /* Strains */ = {
@@ -200,6 +219,7 @@
 			children = (
 				CD480AA71341BB7C2E70CFD6 /* AppStore.swift */,
 				41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */,
+				16A1273D218695E9CBFBFD3E /* AppStore+Cultures.swift */,
 				0ED9D9991693C55FB50FEAEE /* AppStore+Primers.swift */,
 				0A7518AE56208EB534A326B1 /* AppStore+Protocols.swift */,
 				FE47BD58EB6C7FE9C851AF0F /* AppStore+Reagents.swift */,
@@ -296,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				782E9E5583BB53F6FE25C860 /* AppStore+Cloning.swift in Sources */,
+				F8EE4848742142F7442F7ADF /* AppStore+Cultures.swift in Sources */,
 				193EDF93997D2B7ACC0E320B /* AppStore+Primers.swift in Sources */,
 				D16BF20C48CFF5076453D8D6 /* AppStore+Protocols.swift in Sources */,
 				5A602D1A7683BEB3246D6750 /* AppStore+Reagents.swift in Sources */,
@@ -307,6 +328,9 @@
 				B487738058DA9E349298458B /* CloneEditor.swift in Sources */,
 				ACC2745797D990491D839033 /* CloningView.swift in Sources */,
 				E7EF5B145EFD29D8B4145C3F /* CoreModels.swift in Sources */,
+				AA61745C6709E11CBAF1C52C /* CultureEditor.swift in Sources */,
+				B915DE3BCA0BCA710E696B89 /* CultureModels.swift in Sources */,
+				755122D9E4F586984192A3DB /* CulturesView.swift in Sources */,
 				68F46C6B1BB3FEFD839DEFEC /* Database.swift in Sources */,
 				4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */,
 				22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */,

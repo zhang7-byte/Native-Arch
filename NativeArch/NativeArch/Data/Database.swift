@@ -187,6 +187,45 @@ final class Database {
             fragments TEXT NOT NULL DEFAULT '[]'
         );
         """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS cultures (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            name TEXT NOT NULL DEFAULT '',
+            strain_id TEXT REFERENCES strains (id) ON DELETE SET NULL,
+            status TEXT NOT NULL DEFAULT 'active',
+            medium TEXT NOT NULL DEFAULT '',
+            vessel TEXT NOT NULL DEFAULT '',
+            started_date INTEGER NOT NULL,
+            ended_date INTEGER,
+            notes TEXT NOT NULL DEFAULT '',
+            purpose TEXT NOT NULL DEFAULT '',
+            inoculum_amount TEXT NOT NULL DEFAULT '',
+            selection_markers TEXT NOT NULL DEFAULT '[]',
+            parent_culture_id TEXT,
+            parent_inoculated_at INTEGER
+        );
+        """)
+        exec("CREATE INDEX IF NOT EXISTS idx_cultures_status ON cultures (status);")
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS culture_events (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            culture_id TEXT NOT NULL REFERENCES cultures (id) ON DELETE CASCADE,
+            happened_at INTEGER NOT NULL,
+            type TEXT NOT NULL DEFAULT 'note',
+            agent TEXT NOT NULL DEFAULT '',
+            amount TEXT NOT NULL DEFAULT '',
+            note TEXT NOT NULL DEFAULT ''
+        );
+        """)
+        exec("CREATE INDEX IF NOT EXISTS idx_culture_events_culture ON culture_events (culture_id);")
     }
 
     // MARK: - Low-level helpers

@@ -18,6 +18,7 @@ final class AppStore {
     var protocols: [LabProtocol] = []
     var reports: [Report] = []
     var clones: [CloneConstruction] = []
+    var cultures: [Culture] = []
 
     init() {
         reloadProjects()
@@ -29,6 +30,12 @@ final class AppStore {
         reloadProtocols()
         reloadReports()
         reloadClones()
+        reloadCultures()
+    }
+
+    func strainName(_ id: String?) -> String {
+        guard let id, let s = strains.first(where: { $0.id == id }) else { return "—" }
+        return s.name
     }
 
     // MARK: - Projects
