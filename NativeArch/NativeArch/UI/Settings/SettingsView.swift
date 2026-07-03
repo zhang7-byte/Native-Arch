@@ -3,8 +3,10 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppStore.self) private var store
     @State private var s = AppSettings()
+    @Environment(AuthService.self) private var auth
     @State private var loaded = false
     @State private var showTrash = false
+    @State private var showSync = false
 
     var body: some View {
         Form {
@@ -53,6 +55,17 @@ struct SettingsView: View {
                     Text("US — Hawaii").tag("us-hi")
                 }
             }
+            Section("Cloud") {
+                Button {
+                    showSync = true
+                } label: {
+                    HStack {
+                        Label("Cloud sync", systemImage: "arrow.triangle.2.circlepath")
+                        Spacer()
+                        Text(auth.isSignedIn ? auth.email : "Off").foregroundStyle(.secondary)
+                    }
+                }
+            }
             Section("Data") {
                 Button {
                     store.reloadTrash(); showTrash = true
@@ -67,6 +80,7 @@ struct SettingsView: View {
         }
         .navigationTitle("Settings")
         .sheet(isPresented: $showTrash) { TrashView() }
+        .sheet(isPresented: $showSync) { CloudSyncView() }
         .onAppear { if !loaded { s = store.settings; loaded = true } }
         .onChange(of: s.themeMode) { store.saveSettings(s) }
         .onChange(of: s.density) { store.saveSettings(s) }

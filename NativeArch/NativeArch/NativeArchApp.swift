@@ -9,11 +9,13 @@ import SwiftUI
 @main
 struct NativeArchApp: App {
     @State private var store = AppStore()
+    @State private var auth = AuthService()
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environment(store)
+                .environment(auth)
                 .tint(Color(argb: store.settings.accentColor))
                 .preferredColorScheme(colorScheme(for: store.settings.themeMode))
         }
