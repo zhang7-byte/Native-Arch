@@ -42,6 +42,7 @@ extension AppStore {
             return "Not signed in."
         }
         var total = 0
+        var skipped: [String] = []
         for table in Self.syncTables {
             let rows = db.allRows(table)
             if rows.isEmpty { continue }
@@ -49,9 +50,10 @@ extension AppStore {
             let result = await upsert(table: table, rows: payload, config: auth.config,
                                       token: session.accessToken)
             if result.ok { total += rows.count }
+            else if Self.isMissingTable(result.message) { skipped.append(table) }
             else { return "Push failed on \(table): \(result.message)" }
         }
-        return "Pushed \(total) records."
+        return "Pushed \(total) records.\(skippedNote(skipped))"
     }
 
     private func transformForPush(table: String, row: [String: Any]) -> [String: Any] {
@@ -81,12 +83,16 @@ extension AppStore {
         let cursor = db.meta("last_sync") ?? "1970-01-01T00:00:00Z"
         let started = Date()
         var pulled = 0
+        var skipped: [String] = []
         for table in Self.syncTables {
             let (rows, err) = await fetch(table: table, config: auth.config,
                 token: session.accessToken,
                 query: [URLQueryItem(name: "updated_at", value: "gt.\(cursor)"),
                         URLQueryItem(name: "order", value: "updated_at.asc")])
-            if let err { return "Pull failed on \(table): \(err)" }
+            if let err {
+                if Self.isMissingTable(err) { skipped.append(table); continue }
+                return "Pull failed on \(table): \(err)"
+            }
             for row in rows ?? [] {
                 guard let id = row["id"] as? String else { continue }
                 let local = transformFromServer(table: table, row: row)
@@ -108,7 +114,15 @@ extension AppStore {
         }
         db.setMeta("last_sync", Self.iso.string(from: started))
         await MainActor.run { reloadAll(); reloadTrash() }
-        return "Pulled \(pulled) records."
+        return "Pulled \(pulled) records.\(skippedNote(skipped))"
+    }
+
+    private static func isMissingTable(_ msg: String) -> Bool {
+        msg.contains("PGRST205") || msg.contains("HTTP 404")
+    }
+
+    private func skippedNote(_ skipped: [String]) -> String {
+        skipped.isEmpty ? "" : " Skipped (not on server): \(skipped.joined(separator: ", "))."
     }
 
     /// Push then pull.
