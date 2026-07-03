@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadStrains() {
-        strains = db.query("SELECT * FROM strains ORDER BY name COLLATE NOCASE") { r in
+        strains = db.query("SELECT * FROM strains WHERE workspace_id = ? ORDER BY name COLLATE NOCASE", [ws]) { r in
             Strain(
                 id: r.string("id"),
                 name: r.string("name"),
@@ -39,7 +39,7 @@ extension AppStore {
                      selection_markers, freezer_location, notes)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [s.id, now, now, "", s.name, s.serialNumber, s.hostOrganism,
+                [s.id, now, now, ws, s.name, s.serialNumber, s.hostOrganism,
                  s.genotype, s.plasmid, s.constructNotes,
                  encodeStringList(s.selectionMarkers), s.freezerLocation, s.notes])
         }

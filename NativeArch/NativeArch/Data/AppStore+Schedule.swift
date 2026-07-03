@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadCustomEvents() {
-        customEvents = db.query("SELECT * FROM custom_events ORDER BY date") { r in
+        customEvents = db.query("SELECT * FROM custom_events WHERE workspace_id = ? ORDER BY date", [ws]) { r in
             CustomEvent(
                 id: r.string("id"),
                 title: r.string("title"),
@@ -32,7 +32,7 @@ extension AppStore {
                      note, repeat_annually)
                 VALUES (?,?,?,?,?,?,?,?,?)
                 """,
-                [e.id, now, now, "", e.title, e.date, e.category.rawValue, e.note,
+                [e.id, now, now, ws, e.title, e.date, e.category.rawValue, e.note,
                  e.repeatAnnually ? 1 : 0])
         }
         reloadCustomEvents()

@@ -23,7 +23,17 @@ final class AppStore {
     var workspaces: [Workspace] = []
     var settings = AppSettings()
 
+    /// The active workspace id every entity query is scoped to.
+    var ws: String { currentWorkspaceId ?? "" }
+
     init() {
+        ensureCurrentWorkspace()   // sets/creates the current workspace + backfills
+        reloadAll()
+        loadSettings()
+    }
+
+    /// Reload every workspace-scoped cache (called on launch and after switching).
+    func reloadAll() {
         reloadProjects()
         reloadExperiments()
         reloadTasks()
@@ -36,7 +46,6 @@ final class AppStore {
         reloadCultures()
         reloadCustomEvents()
         reloadWorkspaces()
-        loadSettings()
     }
 
     func strainName(_ id: String?) -> String {
@@ -48,7 +57,7 @@ final class AppStore {
 
     func reloadProjects() {
         projects = db.query(
-            "SELECT * FROM projects ORDER BY updated_at DESC"
+            "SELECT * FROM projects WHERE workspace_id = ? ORDER BY updated_at DESC", [ws]
         ) { r in
             Project(
                 id: r.string("id"),
@@ -81,7 +90,7 @@ final class AppStore {
                      status, priority, start_date, target_date, tags)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [p.id, now, now, "", p.title, p.description, p.status.rawValue,
+                [p.id, now, now, ws, p.title, p.description, p.status.rawValue,
                  p.priority.rawValue, p.startDate, p.targetDate, encodeStringList(p.tags)])
         }
         reloadProjects()
@@ -101,7 +110,7 @@ final class AppStore {
 
     func reloadExperiments() {
         experiments = db.query(
-            "SELECT * FROM experiments ORDER BY updated_at DESC"
+            "SELECT * FROM experiments WHERE workspace_id = ? ORDER BY updated_at DESC", [ws]
         ) { r in
             Experiment(
                 id: r.string("id"),
@@ -144,7 +153,7 @@ final class AppStore {
                      methodology_steps, results_notes, conclusion, further_plan, data_links)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [e.id, now, now, "", e.projectId, e.title, e.hypothesis,
+                [e.id, now, now, ws, e.projectId, e.title, e.hypothesis,
                  e.status.rawValue, e.date, encodeStringList(e.strainIds),
                  e.protocolRef, encodeStringList(e.methodologySteps), e.resultsNotes,
                  e.conclusion, e.furtherPlan, encodeStringList(e.dataLinks)])

@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadPrimers() {
-        primers = db.query("SELECT * FROM primers ORDER BY name COLLATE NOCASE") { r in
+        primers = db.query("SELECT * FROM primers WHERE workspace_id = ? ORDER BY name COLLATE NOCASE", [ws]) { r in
             Primer(
                 id: r.string("id"),
                 name: r.string("name"),
@@ -35,7 +35,7 @@ extension AppStore {
                      sequence, target_gene, direction, tm, supplier, notes)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [p.id, now, now, "", p.name, p.serialNumber, p.sequence,
+                [p.id, now, now, ws, p.name, p.serialNumber, p.sequence,
                  p.targetGene, p.direction, p.tm, p.supplier, p.notes])
         }
         reloadPrimers()

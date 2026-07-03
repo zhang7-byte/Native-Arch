@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadProtocols() {
-        protocols = db.query("SELECT * FROM protocols ORDER BY updated_at DESC") { r in
+        protocols = db.query("SELECT * FROM protocols WHERE workspace_id = ? ORDER BY updated_at DESC", [ws]) { r in
             LabProtocol(
                 id: r.string("id"),
                 name: r.string("name"),
@@ -34,7 +34,7 @@ extension AppStore {
                      steps, step_ids, materials, notes)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [p.id, now, now, "", p.name, p.category, p.summary,
+                [p.id, now, now, ws, p.name, p.category, p.summary,
                  encodeStringList(p.steps), encodeStringList(p.stepIds),
                  p.materials, p.notes])
         }

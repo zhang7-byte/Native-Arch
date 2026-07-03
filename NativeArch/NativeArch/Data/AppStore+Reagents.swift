@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadReagents() {
-        reagents = db.query("SELECT * FROM reagents ORDER BY name COLLATE NOCASE") { r in
+        reagents = db.query("SELECT * FROM reagents WHERE workspace_id = ? ORDER BY name COLLATE NOCASE", [ws]) { r in
             Reagent(
                 id: r.string("id"),
                 name: r.string("name"),
@@ -38,7 +38,7 @@ extension AppStore {
                      catalog_no, lot, location, expiry_date, quantity, recipe, notes)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [r.id, now, now, "", r.name, r.kind, r.supplier, r.catalogNo, r.lot,
+                [r.id, now, now, ws, r.name, r.kind, r.supplier, r.catalogNo, r.lot,
                  r.location, r.expiryDate, r.quantity, r.recipe, r.notes])
         }
         reloadReagents()

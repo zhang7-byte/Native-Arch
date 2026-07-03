@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadReports() {
-        reports = db.query("SELECT * FROM reports ORDER BY updated_at DESC") { r in
+        reports = db.query("SELECT * FROM reports WHERE workspace_id = ? ORDER BY updated_at DESC", [ws]) { r in
             Report(
                 id: r.string("id"),
                 title: r.string("title"),
@@ -36,7 +36,7 @@ extension AppStore {
                      period_start, period_end, summary, project_ids, experiment_ids)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [r.id, now, now, "", r.title, r.recipient, r.author, r.periodStart,
+                [r.id, now, now, ws, r.title, r.recipient, r.author, r.periodStart,
                  r.periodEnd, r.summary, encodeStringList(r.projectIds),
                  encodeStringList(r.experimentIds)])
         }

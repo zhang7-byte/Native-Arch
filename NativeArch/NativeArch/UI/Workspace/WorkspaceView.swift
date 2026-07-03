@@ -9,7 +9,7 @@ struct WorkspaceView: View {
     var body: some View {
         List {
             Section {
-                Text("Workspaces group your lab data. Data scoping across workspaces is a later phase — for now this manages the workspace list and the active selection.")
+                Text("Workspaces group your lab data. Switching the active workspace scopes every section to that workspace's records.")
                     .font(.footnote).foregroundStyle(.secondary)
             }
             Section("Workspaces") {
@@ -28,7 +28,7 @@ struct WorkspaceView: View {
                         if ws.id == currentId {
                             Image(systemName: "checkmark.circle.fill").foregroundStyle(.tint)
                         } else {
-                            Button("Use") { store.currentWorkspaceId = ws.id; currentId = ws.id }
+                            Button("Use") { store.switchWorkspace(ws.id); currentId = ws.id }
                                 .buttonStyle(.bordered)
                         }
                     }

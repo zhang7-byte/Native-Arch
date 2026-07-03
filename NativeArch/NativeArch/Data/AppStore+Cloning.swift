@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadClones() {
-        clones = db.query("SELECT * FROM clone_constructions ORDER BY updated_at DESC") { r in
+        clones = db.query("SELECT * FROM clone_constructions WHERE workspace_id = ? ORDER BY updated_at DESC", [ws]) { r in
             CloneConstruction(
                 id: r.string("id"),
                 name: r.string("name"),
@@ -33,7 +33,7 @@ extension AppStore {
                      backbone_name, backbone_strain_id, enzymes, fragments)
                 VALUES (?,?,?,?,?,?,?,?,?,?)
                 """,
-                [c.id, now, now, "", c.name, c.notes, c.backboneName,
+                [c.id, now, now, ws, c.name, c.notes, c.backboneName,
                  c.backboneStrainId, c.enzymes, encodeFragments(c.fragments)])
         }
         reloadClones()

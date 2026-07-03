@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadCultures() {
-        cultures = db.query("SELECT * FROM cultures ORDER BY started_date DESC") { r in
+        cultures = db.query("SELECT * FROM cultures WHERE workspace_id = ? ORDER BY started_date DESC", [ws]) { r in
             Culture(
                 id: r.string("id"),
                 name: r.string("name"),
@@ -46,7 +46,7 @@ extension AppStore {
                      parent_inoculated_at)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [c.id, now, now, "", c.name, c.strainId, c.status.rawValue, c.medium,
+                [c.id, now, now, ws, c.name, c.strainId, c.status.rawValue, c.medium,
                  c.vessel, c.startedDate, c.endedDate, c.notes, c.purpose,
                  c.inoculumAmount, encodeStringList(c.selectionMarkers),
                  c.parentCultureId, c.parentInoculatedAt])

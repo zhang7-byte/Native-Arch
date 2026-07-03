@@ -2,7 +2,7 @@ import Foundation
 
 extension AppStore {
     func reloadTasks() {
-        tasks = db.query("SELECT * FROM tasks ORDER BY updated_at DESC") { r in
+        tasks = db.query("SELECT * FROM tasks WHERE workspace_id = ? ORDER BY updated_at DESC", [ws]) { r in
             Task(
                 id: r.string("id"),
                 projectId: r.string("project_id").isEmpty ? nil : r.string("project_id"),
@@ -34,7 +34,7 @@ extension AppStore {
                      title, description, due_date, status, priority)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?)
                 """,
-                [t.id, now, now, "", t.projectId, t.experimentId, t.title,
+                [t.id, now, now, ws, t.projectId, t.experimentId, t.title,
                  t.description, t.dueDate, t.status.rawValue, t.priority.rawValue])
         }
         reloadTasks()
