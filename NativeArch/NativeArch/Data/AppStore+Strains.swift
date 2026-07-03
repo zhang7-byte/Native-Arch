@@ -47,7 +47,8 @@ extension AppStore {
     }
 
     func deleteStrain(_ id: String) {
-        db.run("DELETE FROM strains WHERE id=?", [id])
+        moveToTrash(table: "strains", id: id, kind: "Strain",
+                    label: strains.first { $0.id == id }?.name ?? "Strain")
         reloadStrains()
     }
 }

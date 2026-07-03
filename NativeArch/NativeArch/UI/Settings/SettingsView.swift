@@ -4,6 +4,7 @@ struct SettingsView: View {
     @Environment(AppStore.self) private var store
     @State private var s = AppSettings()
     @State private var loaded = false
+    @State private var showTrash = false
 
     var body: some View {
         Form {
@@ -52,8 +53,20 @@ struct SettingsView: View {
                     Text("US — Hawaii").tag("us-hi")
                 }
             }
+            Section("Data") {
+                Button {
+                    store.reloadTrash(); showTrash = true
+                } label: {
+                    HStack {
+                        Label("Recently deleted", systemImage: "trash")
+                        Spacer()
+                        Text("\(store.trash.count)").foregroundStyle(.secondary)
+                    }
+                }
+            }
         }
         .navigationTitle("Settings")
+        .sheet(isPresented: $showTrash) { TrashView() }
         .onAppear { if !loaded { s = store.settings; loaded = true } }
         .onChange(of: s.themeMode) { store.saveSettings(s) }
         .onChange(of: s.density) { store.saveSettings(s) }

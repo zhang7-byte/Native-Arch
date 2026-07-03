@@ -39,7 +39,8 @@ extension AppStore {
     }
 
     func deleteCustomEvent(_ id: String) {
-        db.run("DELETE FROM custom_events WHERE id=?", [id])
+        moveToTrash(table: "custom_events", id: id, kind: "Event",
+                    label: customEvents.first { $0.id == id }?.title ?? "Event")
         reloadCustomEvents()
     }
 }

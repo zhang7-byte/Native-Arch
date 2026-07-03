@@ -40,7 +40,8 @@ extension AppStore {
     }
 
     func deleteClone(_ id: String) {
-        db.run("DELETE FROM clone_constructions WHERE id=?", [id])
+        moveToTrash(table: "clone_constructions", id: id, kind: "Construction",
+                    label: clones.first { $0.id == id }?.name ?? "Construction")
         reloadClones()
     }
 }

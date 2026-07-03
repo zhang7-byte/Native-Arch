@@ -45,7 +45,8 @@ extension AppStore {
     }
 
     func deleteReagent(_ id: String) {
-        db.run("DELETE FROM reagents WHERE id=?", [id])
+        moveToTrash(table: "reagents", id: id, kind: "Reagent",
+                    label: reagents.first { $0.id == id }?.name ?? "Reagent")
         reloadReagents()
     }
 }

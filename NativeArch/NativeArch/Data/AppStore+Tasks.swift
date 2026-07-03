@@ -41,7 +41,8 @@ extension AppStore {
     }
 
     func deleteTask(_ id: String) {
-        db.run("DELETE FROM tasks WHERE id=?", [id])
+        moveToTrash(table: "tasks", id: id, kind: "Task",
+                    label: tasks.first { $0.id == id }?.title ?? "Task")
         reloadTasks()
     }
 }

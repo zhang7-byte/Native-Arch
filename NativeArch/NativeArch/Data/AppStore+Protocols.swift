@@ -42,7 +42,8 @@ extension AppStore {
     }
 
     func deleteProtocol(_ id: String) {
-        db.run("DELETE FROM protocols WHERE id=?", [id])
+        moveToTrash(table: "protocols", id: id, kind: "Protocol",
+                    label: protocols.first { $0.id == id }?.name ?? "Protocol")
         reloadProtocols()
     }
 }

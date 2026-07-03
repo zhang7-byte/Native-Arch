@@ -30,6 +30,7 @@
 		68F46C6B1BB3FEFD839DEFEC /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E4AFF27A9221AF66B35CA /* Database.swift */; };
 		6B0D7135206C37442C20E71A /* AppStore+ExperimentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B69755B3157C310214C437 /* AppStore+ExperimentDetail.swift */; };
 		6D6ACFC5951BC2EF2D00C1F3 /* ProtocolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21214989CC7597CCE00C796C /* ProtocolsView.swift */; };
+		6DE77B59D58AB0325E482CE3 /* TrashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4340FEDB1A9D2C1246027B30 /* TrashModels.swift */; };
 		6EFF99C4FA4715C59F7776EF /* BatchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D7A108F2927D547197E300 /* BatchModels.swift */; };
 		6FBA7568E9DD0A9831FAC313 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583C2FEF54D9119EF6329BA4 /* ScheduleView.swift */; };
 		733F73242066BADECB2D1407 /* StrainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0E981BFE4BE23C06AC5116 /* StrainsView.swift */; };
@@ -37,6 +38,7 @@
 		7766928F6431171E5CADD0DB /* PrimerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C59C7A7737819049A355E /* PrimerEditor.swift */; };
 		782E9E5583BB53F6FE25C860 /* AppStore+Cloning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */; };
 		84FC6540D15C806C70B60AC7 /* PrimersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C5085C6C165E826C3415BF /* PrimersView.swift */; };
+		8D4138CF19DBCF7A3C6A2AEE /* AppStore+Trash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2583425A784AE36D4DF46526 /* AppStore+Trash.swift */; };
 		8E3D6C2A6B0DC33F7D2F8624 /* DeadlinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB78716B823D91F25EE0A6 /* DeadlinesView.swift */; };
 		935699771D9D10FA9CD0217C /* ReagentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */; };
 		941B7EB8D4779C381960803F /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD480AA71341BB7C2E70CFD6 /* AppStore.swift */; };
@@ -51,6 +53,7 @@
 		B915DE3BCA0BCA710E696B89 /* CultureModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B4B461E647AB396F0606F /* CultureModels.swift */; };
 		BBC956CF01D8145C447259B9 /* AppStore+Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = B748C879639D15696C4B323F /* AppStore+Reports.swift */; };
 		C269B37F7EA0FFFEED1F63CA /* StrainEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008095114F04374B09057673 /* StrainEditor.swift */; };
+		C53D5EBA6C1D9D5A14B9C0E9 /* TrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720ACE2494B2B75AB0FAC873 /* TrashView.swift */; };
 		C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243A492C1466FB36B530263 /* TaskEditor.swift */; };
 		CA8EC62BB22DCEAF9C28D66E /* ProtocolEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */; };
 		D16BF20C48CFF5076453D8D6 /* AppStore+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7518AE56208EB534A326B1 /* AppStore+Protocols.swift */; };
@@ -73,11 +76,13 @@
 		1E74774AC43998BCF21ACD78 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		21214989CC7597CCE00C796C /* ProtocolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsView.swift; sourceTree = "<group>"; };
 		21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentsView.swift; sourceTree = "<group>"; };
+		2583425A784AE36D4DF46526 /* AppStore+Trash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Trash.swift"; sourceTree = "<group>"; };
 		2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Strains.swift"; sourceTree = "<group>"; };
 		32D43CBBA4914CBDD54F3CD6 /* AppStore+Workspaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Workspaces.swift"; sourceTree = "<group>"; };
 		3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		40F78793341CB51AA6876CB3 /* CultureEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureEditor.swift; sourceTree = "<group>"; };
 		41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Cloning.swift"; sourceTree = "<group>"; };
+		4340FEDB1A9D2C1246027B30 /* TrashModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashModels.swift; sourceTree = "<group>"; };
 		48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentEditor.swift; sourceTree = "<group>"; };
 		4AAB78716B823D91F25EE0A6 /* DeadlinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinesView.swift; sourceTree = "<group>"; };
 		4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolEditor.swift; sourceTree = "<group>"; };
@@ -87,6 +92,7 @@
 		6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Tasks.swift"; sourceTree = "<group>"; };
 		6EC623E40E858D8D6D7AC0A0 /* SystemModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemModels.swift; sourceTree = "<group>"; };
 		7175B0E9AF87A09AA073D3FC /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		720ACE2494B2B75AB0FAC873 /* TrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashView.swift; sourceTree = "<group>"; };
 		752B4B461E647AB396F0606F /* CultureModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureModels.swift; sourceTree = "<group>"; };
 		7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModels.swift; sourceTree = "<group>"; };
 		7FA861DF29CBF5DDE7EA62D1 /* PlatformImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformImage.swift; sourceTree = "<group>"; };
@@ -242,6 +248,7 @@
 				752B4B461E647AB396F0606F /* CultureModels.swift */,
 				6A7E56950D4F94BDEBE69A5A /* Models.swift */,
 				6EC623E40E858D8D6D7AC0A0 /* SystemModels.swift */,
+				4340FEDB1A9D2C1246027B30 /* TrashModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -302,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				E0DC9B2F887EB1CE25C3242D /* SettingsView.swift */,
+				720ACE2494B2B75AB0FAC873 /* TrashView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -331,6 +339,7 @@
 				FA80BB7E91562907496668DC /* AppStore+Settings.swift */,
 				2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */,
 				6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */,
+				2583425A784AE36D4DF46526 /* AppStore+Trash.swift */,
 				32D43CBBA4914CBDD54F3CD6 /* AppStore+Workspaces.swift */,
 				069E4AFF27A9221AF66B35CA /* Database.swift */,
 			);
@@ -434,6 +443,7 @@
 				313C8DE8BBBD21D570FB028B /* AppStore+Settings.swift in Sources */,
 				5144F1A529277431F79CB51A /* AppStore+Strains.swift in Sources */,
 				B546E9874B579748D7A440E8 /* AppStore+Tasks.swift in Sources */,
+				8D4138CF19DBCF7A3C6A2AEE /* AppStore+Trash.swift in Sources */,
 				9A4B4E44CC3D475E50F348D8 /* AppStore+Workspaces.swift in Sources */,
 				941B7EB8D4779C381960803F /* AppStore.swift in Sources */,
 				D8991B2C5F56D6136275D33F /* AttachmentModels.swift in Sources */,
@@ -475,6 +485,8 @@
 				C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */,
 				A8DBB06176D09043627C9D38 /* TasksView.swift in Sources */,
 				3F85365DF57023003815CBB2 /* Theme.swift in Sources */,
+				6DE77B59D58AB0325E482CE3 /* TrashModels.swift in Sources */,
+				C53D5EBA6C1D9D5A14B9C0E9 /* TrashView.swift in Sources */,
 				4B3A14B57014ABE827CCCFAC /* WorkspaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

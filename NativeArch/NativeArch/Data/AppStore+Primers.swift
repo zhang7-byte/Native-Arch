@@ -42,7 +42,8 @@ extension AppStore {
     }
 
     func deletePrimer(_ id: String) {
-        db.run("DELETE FROM primers WHERE id=?", [id])
+        moveToTrash(table: "primers", id: id, kind: "Primer",
+                    label: primers.first { $0.id == id }?.name ?? "Primer")
         reloadPrimers()
     }
 }

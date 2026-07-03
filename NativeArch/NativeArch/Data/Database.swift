@@ -305,6 +305,64 @@ final class Database {
             bytes BLOB NOT NULL
         );
         """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS trash_entries (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            entity_table TEXT NOT NULL,
+            entity_id TEXT NOT NULL,
+            kind TEXT NOT NULL DEFAULT '',
+            label TEXT NOT NULL DEFAULT '',
+            deleted_at INTEGER NOT NULL,
+            payload TEXT NOT NULL
+        );
+        """)
+    }
+
+    // MARK: - Generic row capture / restore (for Trash)
+
+    /// Serialize a single row to a JSON object (column → typed value).
+    func rowJSON(_ table: String, id: String) -> String? {
+        var stmt: OpaquePointer?
+        guard sqlite3_prepare_v2(db, "SELECT * FROM \(table) WHERE id=?", -1, &stmt, nil) == SQLITE_OK
+        else { return nil }
+        defer { sqlite3_finalize(stmt) }
+        sqlite3_bind_text(stmt, 1, id, -1, SQLITE_TRANSIENT)
+        guard sqlite3_step(stmt) == SQLITE_ROW else { return nil }
+        var obj: [String: Any] = [:]
+        for i in 0..<sqlite3_column_count(stmt) {
+            let name = String(cString: sqlite3_column_name(stmt, i))
+            switch sqlite3_column_type(stmt, i) {
+            case SQLITE_INTEGER: obj[name] = sqlite3_column_int64(stmt, i)
+            case SQLITE_FLOAT: obj[name] = sqlite3_column_double(stmt, i)
+            case SQLITE_NULL: obj[name] = NSNull()
+            default:
+                if let c = sqlite3_column_text(stmt, i) { obj[name] = String(cString: c) }
+            }
+        }
+        guard let data = try? JSONSerialization.data(withJSONObject: obj) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+
+    /// Re-insert a row captured by [rowJSON].
+    func insertRow(_ table: String, json: String) {
+        guard let data = json.data(using: .utf8),
+              let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return }
+        let cols = Array(obj.keys)
+        let colList = cols.joined(separator: ",")
+        let placeholders = cols.map { _ in "?" }.joined(separator: ",")
+        let params: [Any?] = cols.map { key in
+            let v = obj[key]
+            if v is NSNull { return nil }
+            if let n = v as? Int { return n }
+            if let n = v as? Int64 { return Int(n) }
+            if let d = v as? Double { return d }
+            return v as? String
+        }
+        run("INSERT OR REPLACE INTO \(table) (\(colList)) VALUES (\(placeholders))", params)
     }
 
     // MARK: - Low-level helpers

@@ -21,6 +21,7 @@ final class AppStore {
     var cultures: [Culture] = []
     var customEvents: [CustomEvent] = []
     var workspaces: [Workspace] = []
+    var trash: [TrashEntry] = []
     var settings = AppSettings()
 
     /// The active workspace id every entity query is scoped to.
@@ -46,6 +47,7 @@ final class AppStore {
         reloadCultures()
         reloadCustomEvents()
         reloadWorkspaces()
+        reloadTrash()
     }
 
     func strainName(_ id: String?) -> String {
@@ -97,7 +99,8 @@ final class AppStore {
     }
 
     func deleteProject(_ id: String) {
-        db.run("DELETE FROM projects WHERE id=?", [id])
+        moveToTrash(table: "projects", id: id, kind: "Project",
+                    label: projects.first { $0.id == id }?.title ?? "Project")
         reloadProjects()
         reloadExperiments() // cascade removed the project's experiments
     }
@@ -162,7 +165,8 @@ final class AppStore {
     }
 
     func deleteExperiment(_ id: String) {
-        db.run("DELETE FROM experiments WHERE id=?", [id])
+        moveToTrash(table: "experiments", id: id, kind: "Experiment",
+                    label: experiments.first { $0.id == id }?.title ?? "Experiment")
         reloadExperiments()
     }
 }

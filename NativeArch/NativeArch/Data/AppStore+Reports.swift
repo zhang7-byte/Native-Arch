@@ -44,7 +44,8 @@ extension AppStore {
     }
 
     func deleteReport(_ id: String) {
-        db.run("DELETE FROM reports WHERE id=?", [id])
+        moveToTrash(table: "reports", id: id, kind: "Report",
+                    label: reports.first { $0.id == id }?.title ?? "Report")
         reloadReports()
     }
 }

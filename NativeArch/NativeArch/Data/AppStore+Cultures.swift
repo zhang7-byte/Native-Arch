@@ -55,7 +55,8 @@ extension AppStore {
     }
 
     func deleteCulture(_ id: String) {
-        db.run("DELETE FROM cultures WHERE id=?", [id])
+        moveToTrash(table: "cultures", id: id, kind: "Culture",
+                    label: cultures.first { $0.id == id }?.name ?? "Culture")
         reloadCultures()
     }
 
