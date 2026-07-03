@@ -263,6 +263,48 @@ final class Database {
             name TEXT NOT NULL DEFAULT 'My Lab'
         );
         """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS experiment_updates (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            experiment_id TEXT NOT NULL REFERENCES experiments (id) ON DELETE CASCADE,
+            happened_at INTEGER NOT NULL,
+            note TEXT NOT NULL DEFAULT ''
+        );
+        """)
+        exec("CREATE INDEX IF NOT EXISTS idx_updates_experiment ON experiment_updates (experiment_id);")
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS images (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            experiment_id TEXT REFERENCES experiments (id) ON DELETE CASCADE,
+            strain_id TEXT REFERENCES strains (id) ON DELETE CASCADE,
+            culture_id TEXT REFERENCES cultures (id) ON DELETE CASCADE,
+            update_id TEXT REFERENCES experiment_updates (id) ON DELETE CASCADE,
+            report_id TEXT REFERENCES reports (id) ON DELETE CASCADE,
+            protocol_id TEXT REFERENCES protocols (id) ON DELETE CASCADE,
+            step_id TEXT,
+            caption TEXT NOT NULL DEFAULT '',
+            notes TEXT NOT NULL DEFAULT '',
+            annotations TEXT NOT NULL DEFAULT '[]',
+            content_type TEXT NOT NULL DEFAULT 'image/jpeg',
+            storage_path TEXT NOT NULL DEFAULT ''
+        );
+        """)
+        exec("CREATE INDEX IF NOT EXISTS idx_images_experiment ON images (experiment_id);")
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS image_blobs (
+            id TEXT NOT NULL PRIMARY KEY REFERENCES images (id) ON DELETE CASCADE,
+            bytes BLOB NOT NULL
+        );
+        """)
     }
 
     // MARK: - Low-level helpers
@@ -321,6 +363,10 @@ final class Database {
                 sqlite3_bind_double(stmt, idx, v)
             case let v as Date:
                 sqlite3_bind_int64(stmt, idx, Int64(v.timeIntervalSince1970))
+            case let v as Data:
+                v.withUnsafeBytes { raw in
+                    sqlite3_bind_blob(stmt, idx, raw.baseAddress, Int32(v.count), SQLITE_TRANSIENT)
+                }
             default:
                 sqlite3_bind_text(stmt, idx, "\(p!)", -1, SQLITE_TRANSIENT)
             }
@@ -348,6 +394,13 @@ struct Row {
     func date(_ name: String) -> Date? {
         guard let i = index(name), sqlite3_column_type(stmt, i) != SQLITE_NULL else { return nil }
         return Date(timeIntervalSince1970: TimeInterval(sqlite3_column_int64(stmt, i)))
+    }
+
+    func blob(_ name: String) -> Data? {
+        guard let i = index(name), sqlite3_column_type(stmt, i) != SQLITE_NULL,
+              let ptr = sqlite3_column_blob(stmt, i) else { return nil }
+        let count = Int(sqlite3_column_bytes(stmt, i))
+        return Data(bytes: ptr, count: count)
     }
 
     func stringList(_ name: String) -> [String] {
