@@ -75,4 +75,18 @@ extension AppStore {
     func deleteImage(_ id: String) {
         db.run("DELETE FROM images WHERE id=?", [id]) // cascade removes the blob
     }
+
+    // MARK: - Annotations
+
+    func annotations(_ imageId: String) -> [ImageAnnotation] {
+        let raw = db.query("SELECT annotations FROM images WHERE id=?", [imageId]) {
+            $0.string("annotations")
+        }.first ?? "[]"
+        return decodeAnnotations(raw)
+    }
+
+    func saveAnnotations(_ imageId: String, _ list: [ImageAnnotation]) {
+        db.run("UPDATE images SET annotations=?, updated_at=? WHERE id=?",
+               [encodeAnnotations(list), Date(), imageId])
+    }
 }

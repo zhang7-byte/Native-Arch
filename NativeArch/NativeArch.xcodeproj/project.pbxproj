@@ -13,6 +13,7 @@
 		05A7363A684EFAF23658EC72 /* PlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA861DF29CBF5DDE7EA62D1 /* PlatformImage.swift */; };
 		0EFBD5C76D045F697E6F1407 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8DB45AD6AC0C4519B1A8BB7 /* CSV.swift */; };
 		149474879CA09C0815ABEF66 /* ReportEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E7C286D95605DBB8EE13D6 /* ReportEditor.swift */; };
+		162E46A04D1735E2D187865A /* AnnotationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CC5836EE23BFC3D0F8B6C0 /* AnnotationModels.swift */; };
 		193EDF93997D2B7ACC0E320B /* AppStore+Primers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9D9991693C55FB50FEAEE /* AppStore+Primers.swift */; };
 		22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936DCAFB8B1EC2B9060A19A /* ExperimentsView.swift */; };
 		29708CBD06ACDD314A9CF734 /* PDFRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0519E9D2F02CBFDF2DE302D /* PDFRender.swift */; };
@@ -57,6 +58,7 @@
 		C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A243A492C1466FB36B530263 /* TaskEditor.swift */; };
 		CA8EC62BB22DCEAF9C28D66E /* ProtocolEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */; };
 		D16BF20C48CFF5076453D8D6 /* AppStore+Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7518AE56208EB534A326B1 /* AppStore+Protocols.swift */; };
+		D2AC342975656F7240EFF47F /* AnnotateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4790714F28EDBA5AB3882459 /* AnnotateView.swift */; };
 		D6083EF486EEB354DBAF54E5 /* FileDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A936A1713AA38A7411895991 /* FileDocuments.swift */; };
 		D80E1A66C214F79887397A65 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */; };
 		D8991B2C5F56D6136275D33F /* AttachmentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5C183BBE7F5EE03F37F10 /* AttachmentModels.swift */; };
@@ -78,11 +80,13 @@
 		21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentsView.swift; sourceTree = "<group>"; };
 		2583425A784AE36D4DF46526 /* AppStore+Trash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Trash.swift"; sourceTree = "<group>"; };
 		2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Strains.swift"; sourceTree = "<group>"; };
+		30CC5836EE23BFC3D0F8B6C0 /* AnnotationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationModels.swift; sourceTree = "<group>"; };
 		32D43CBBA4914CBDD54F3CD6 /* AppStore+Workspaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Workspaces.swift"; sourceTree = "<group>"; };
 		3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		40F78793341CB51AA6876CB3 /* CultureEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureEditor.swift; sourceTree = "<group>"; };
 		41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Cloning.swift"; sourceTree = "<group>"; };
 		4340FEDB1A9D2C1246027B30 /* TrashModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashModels.swift; sourceTree = "<group>"; };
+		4790714F28EDBA5AB3882459 /* AnnotateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotateView.swift; sourceTree = "<group>"; };
 		48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentEditor.swift; sourceTree = "<group>"; };
 		4AAB78716B823D91F25EE0A6 /* DeadlinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinesView.swift; sourceTree = "<group>"; };
 		4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolEditor.swift; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 		24151E15258D90A3381D7329 /* Experiments */ = {
 			isa = PBXGroup;
 			children = (
+				4790714F28EDBA5AB3882459 /* AnnotateView.swift */,
 				CE7A68280F0B6D65F7B54D73 /* ExperimentEditor.swift */,
 				9936DCAFB8B1EC2B9060A19A /* ExperimentsView.swift */,
 			);
@@ -242,6 +247,7 @@
 		598DBA646D7954FEF3B19A46 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				30CC5836EE23BFC3D0F8B6C0 /* AnnotationModels.swift */,
 				81C5C183BBE7F5EE03F37F10 /* AttachmentModels.swift */,
 				92D7A108F2927D547197E300 /* BatchModels.swift */,
 				7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */,
@@ -431,6 +437,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2AC342975656F7240EFF47F /* AnnotateView.swift in Sources */,
+				162E46A04D1735E2D187865A /* AnnotationModels.swift in Sources */,
 				3E91B6640600AD3C2DEFFE2F /* AppStore+CSV.swift in Sources */,
 				782E9E5583BB53F6FE25C860 /* AppStore+Cloning.swift in Sources */,
 				F8EE4848742142F7442F7ADF /* AppStore+Cultures.swift in Sources */,

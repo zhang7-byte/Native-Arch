@@ -17,6 +17,7 @@ struct ExperimentEditor: View {
     @State private var editingUpdate: ExperimentUpdate?
     @State private var addingUpdate = false
     @State private var photoItem: PhotosPickerItem?
+    @State private var annotating: AttachedImage?
 
     init(experiment: Experiment?) {
         _draft = State(initialValue: experiment ?? Experiment())
@@ -96,6 +97,7 @@ struct ExperimentEditor: View {
                     store.saveUpdate($0); reloadDetail()
                 }
             }
+            .sheet(item: $annotating) { img in AnnotateView(imageID: img.id) }
         }
     }
 
@@ -147,7 +149,11 @@ struct ExperimentEditor: View {
                                     image.resizable().scaledToFill()
                                         .frame(width: 90, height: 90)
                                         .clipShape(.rect(cornerRadius: 10))
+                                        .onTapGesture { annotating = img }
                                         .contextMenu {
+                                            Button { annotating = img } label: {
+                                                Label("Annotate", systemImage: "pencil.tip.crop.circle")
+                                            }
                                             Button(role: .destructive) {
                                                 store.deleteImage(img.id); reloadDetail()
                                             } label: { Label("Delete", systemImage: "trash") }
