@@ -48,6 +48,37 @@ enum Palette {
     }
 }
 
+extension Color {
+    /// Build a color from a packed ARGB integer (matches the stored accent).
+    init(argb: Int) {
+        self = Color(.sRGB,
+                     red: Double((argb >> 16) & 0xFF) / 255,
+                     green: Double((argb >> 8) & 0xFF) / 255,
+                     blue: Double(argb & 0xFF) / 255,
+                     opacity: Double((argb >> 24) & 0xFF) / 255)
+    }
+}
+
+func colorScheme(for mode: String) -> ColorScheme? {
+    switch mode {
+    case "light": return .light
+    case "dark": return .dark
+    default: return nil
+    }
+}
+
+/// Preset accent colors offered in Settings (label, ARGB).
+let accentPresets: [(name: String, argb: Int)] = [
+    ("Teal", 0xFF009688),
+    ("Terracotta", 0xFFC96442),
+    ("Blue", 0xFF2E6FF2),
+    ("Purple", 0xFF7C4DFF),
+    ("Green", 0xFF2E9E5B),
+    ("Orange", 0xFFF08A24),
+    ("Pink", 0xFFE0559C),
+    ("Indigo", 0xFF3F51B5),
+]
+
 /// A small pill label rendered on Liquid Glass, tinted to the given color.
 struct StatusChip: View {
     let text: String

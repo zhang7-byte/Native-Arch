@@ -226,6 +226,43 @@ final class Database {
         );
         """)
         exec("CREATE INDEX IF NOT EXISTS idx_culture_events_culture ON culture_events (culture_id);")
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS custom_events (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            workspace_id TEXT NOT NULL DEFAULT '',
+            title TEXT NOT NULL,
+            date INTEGER NOT NULL,
+            category TEXT NOT NULL DEFAULT 'personal',
+            note TEXT NOT NULL DEFAULT '',
+            repeat_annually INTEGER NOT NULL DEFAULT 0
+        );
+        """)
+        exec("CREATE INDEX IF NOT EXISTS idx_custom_events_date ON custom_events (date);")
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS app_settings (
+            id INTEGER NOT NULL PRIMARY KEY DEFAULT 0,
+            theme_mode TEXT NOT NULL DEFAULT 'system',
+            accent_color INTEGER NOT NULL DEFAULT 4278290603,
+            density TEXT NOT NULL DEFAULT 'comfortable',
+            notify_frequency TEXT NOT NULL DEFAULT 'daily',
+            holiday_region TEXT NOT NULL DEFAULT 'none',
+            schedule_notify INTEGER NOT NULL DEFAULT 1,
+            updated_at INTEGER NOT NULL DEFAULT 0
+        );
+        """)
+
+        exec("""
+        CREATE TABLE IF NOT EXISTS workspaces (
+            id TEXT NOT NULL PRIMARY KEY,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            name TEXT NOT NULL DEFAULT 'My Lab'
+        );
+        """)
     }
 
     // MARK: - Low-level helpers

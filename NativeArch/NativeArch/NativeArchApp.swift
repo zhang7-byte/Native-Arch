@@ -14,6 +14,8 @@ struct NativeArchApp: App {
         WindowGroup {
             RootView()
                 .environment(store)
+                .tint(Color(argb: store.settings.accentColor))
+                .preferredColorScheme(colorScheme(for: store.settings.themeMode))
         }
         #if os(macOS)
         .defaultSize(width: 1100, height: 720)

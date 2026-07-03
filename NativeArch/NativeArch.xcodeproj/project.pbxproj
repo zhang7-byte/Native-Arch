@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01797935C470A6CEC787F0EC /* AppStore+Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB81B87828226785DC6B3DD3 /* AppStore+Schedule.swift */; };
 		0466FA2C61B06AA03B0220E5 /* NativeArchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54DB8F625ABECA9CB57F77E /* NativeArchApp.swift */; };
 		04E4CBF84DAC7BDD993B4A77 /* ProjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AFF219B54831E31EB5B553 /* ProjectsView.swift */; };
 		149474879CA09C0815ABEF66 /* ReportEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E7C286D95605DBB8EE13D6 /* ReportEditor.swift */; };
 		193EDF93997D2B7ACC0E320B /* AppStore+Primers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9D9991693C55FB50FEAEE /* AppStore+Primers.swift */; };
 		22F8450F08DE7D5458A6156B /* ExperimentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936DCAFB8B1EC2B9060A19A /* ExperimentsView.swift */; };
+		2F049FA827C07EAF0729CDFE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DC9B2F887EB1CE25C3242D /* SettingsView.swift */; };
+		313C8DE8BBBD21D570FB028B /* AppStore+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80BB7E91562907496668DC /* AppStore+Settings.swift */; };
 		3F85365DF57023003815CBB2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7175B0E9AF87A09AA073D3FC /* Theme.swift */; };
+		4B3A14B57014ABE827CCCFAC /* WorkspaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0264FCE588A7821ED27393D3 /* WorkspaceView.swift */; };
 		4D4A91EF4DE2C5071A9F6669 /* ExperimentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A68280F0B6D65F7B54D73 /* ExperimentEditor.swift */; };
 		5144F1A529277431F79CB51A /* AppStore+Strains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */; };
 		51E5D5A890F07F1E76113804 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0DE8F56EB638805E36E5F7 /* DashboardView.swift */; };
@@ -22,6 +26,7 @@
 		68F46C6B1BB3FEFD839DEFEC /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069E4AFF27A9221AF66B35CA /* Database.swift */; };
 		6D6ACFC5951BC2EF2D00C1F3 /* ProtocolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21214989CC7597CCE00C796C /* ProtocolsView.swift */; };
 		6EFF99C4FA4715C59F7776EF /* BatchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D7A108F2927D547197E300 /* BatchModels.swift */; };
+		6FBA7568E9DD0A9831FAC313 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583C2FEF54D9119EF6329BA4 /* ScheduleView.swift */; };
 		733F73242066BADECB2D1407 /* StrainsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0E981BFE4BE23C06AC5116 /* StrainsView.swift */; };
 		755122D9E4F586984192A3DB /* CulturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED1A8539B02544D90A22040 /* CulturesView.swift */; };
 		7766928F6431171E5CADD0DB /* PrimerEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C59C7A7737819049A355E /* PrimerEditor.swift */; };
@@ -30,6 +35,7 @@
 		8E3D6C2A6B0DC33F7D2F8624 /* DeadlinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB78716B823D91F25EE0A6 /* DeadlinesView.swift */; };
 		935699771D9D10FA9CD0217C /* ReagentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D3D0FCCE4023C1CC1A945D /* ReagentEditor.swift */; };
 		941B7EB8D4779C381960803F /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD480AA71341BB7C2E70CFD6 /* AppStore.swift */; };
+		9A4B4E44CC3D475E50F348D8 /* AppStore+Workspaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D43CBBA4914CBDD54F3CD6 /* AppStore+Workspaces.swift */; };
 		A32702377707E200EBDB77C9 /* ProjectEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D000F4E97CF88889F0C973DF /* ProjectEditor.swift */; };
 		A5ABEB8210972C8314CEE585 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7E56950D4F94BDEBE69A5A /* Models.swift */; };
 		A8DBB06176D09043627C9D38 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74774AC43998BCF21ACD78 /* TasksView.swift */; };
@@ -46,11 +52,13 @@
 		D80E1A66C214F79887397A65 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */; };
 		DA1AEF0378B0FF8AE5C43BDC /* ReagentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */; };
 		E7EF5B145EFD29D8B4145C3F /* CoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */; };
+		F400621DF6B7783953659C06 /* SystemModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC623E40E858D8D6D7AC0A0 /* SystemModels.swift */; };
 		F8EE4848742142F7442F7ADF /* AppStore+Cultures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1273D218695E9CBFBFD3E /* AppStore+Cultures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		008095114F04374B09057673 /* StrainEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrainEditor.swift; sourceTree = "<group>"; };
+		0264FCE588A7821ED27393D3 /* WorkspaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkspaceView.swift; sourceTree = "<group>"; };
 		069E4AFF27A9221AF66B35CA /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		0A7518AE56208EB534A326B1 /* AppStore+Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Protocols.swift"; sourceTree = "<group>"; };
 		0ED9D9991693C55FB50FEAEE /* AppStore+Primers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Primers.swift"; sourceTree = "<group>"; };
@@ -59,6 +67,7 @@
 		21214989CC7597CCE00C796C /* ProtocolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsView.swift; sourceTree = "<group>"; };
 		21D94A75CD32F69A5A9B9B1C /* ReagentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReagentsView.swift; sourceTree = "<group>"; };
 		2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Strains.swift"; sourceTree = "<group>"; };
+		32D43CBBA4914CBDD54F3CD6 /* AppStore+Workspaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Workspaces.swift"; sourceTree = "<group>"; };
 		3EAB6AD8B04CD9CD2CE6217E /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		40F78793341CB51AA6876CB3 /* CultureEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureEditor.swift; sourceTree = "<group>"; };
 		41E6F8FD9FF3D81079040C8B /* AppStore+Cloning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Cloning.swift"; sourceTree = "<group>"; };
@@ -66,8 +75,10 @@
 		4AAB78716B823D91F25EE0A6 /* DeadlinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlinesView.swift; sourceTree = "<group>"; };
 		4AB8F3B7306957B1E1604CA6 /* ProtocolEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolEditor.swift; sourceTree = "<group>"; };
 		50AFF219B54831E31EB5B553 /* ProjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsView.swift; sourceTree = "<group>"; };
+		583C2FEF54D9119EF6329BA4 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		6A7E56950D4F94BDEBE69A5A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Tasks.swift"; sourceTree = "<group>"; };
+		6EC623E40E858D8D6D7AC0A0 /* SystemModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemModels.swift; sourceTree = "<group>"; };
 		7175B0E9AF87A09AA073D3FC /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		752B4B461E647AB396F0606F /* CultureModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CultureModels.swift; sourceTree = "<group>"; };
 		7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreModels.swift; sourceTree = "<group>"; };
@@ -89,6 +100,9 @@
 		CE7A68280F0B6D65F7B54D73 /* ExperimentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentEditor.swift; sourceTree = "<group>"; };
 		D000F4E97CF88889F0C973DF /* ProjectEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditor.swift; sourceTree = "<group>"; };
 		D28AF475920105BB92C31693 /* CloningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloningView.swift; sourceTree = "<group>"; };
+		E0DC9B2F887EB1CE25C3242D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EB81B87828226785DC6B3DD3 /* AppStore+Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Schedule.swift"; sourceTree = "<group>"; };
+		FA80BB7E91562907496668DC /* AppStore+Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Settings.swift"; sourceTree = "<group>"; };
 		FE47BD58EB6C7FE9C851AF0F /* AppStore+Reagents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppStore+Reagents.swift"; sourceTree = "<group>"; };
 		FED1A8539B02544D90A22040 /* CulturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulturesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,9 +139,12 @@
 				FAC63187F965A1578E4EEA25 /* Protocols */,
 				3CFA6ECF9E7C8C291208E29B /* Reagents */,
 				E42C389FD415622232B692F5 /* Reports */,
+				7D9A8F88ABA78F667B283E94 /* Schedule */,
+				B31820754D4690816AA4D56A /* Settings */,
 				A2288A4F2A246883871071DF /* Strains */,
 				17A5B67BEA5D2E790795EBAB /* Tasks */,
 				BDD993008E747AEACC835689 /* Theme */,
+				31B2CAB23915BEB3397B443D /* Workspace */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -157,6 +174,14 @@
 				C2C5085C6C165E826C3415BF /* PrimersView.swift */,
 			);
 			path = Primers;
+			sourceTree = "<group>";
+		};
+		31B2CAB23915BEB3397B443D /* Workspace */ = {
+			isa = PBXGroup;
+			children = (
+				0264FCE588A7821ED27393D3 /* WorkspaceView.swift */,
+			);
+			path = Workspace;
 			sourceTree = "<group>";
 		};
 		3CE6F055ABB987B981467FF3 /* Projects */ = {
@@ -201,6 +226,7 @@
 				7BDC3AF0D87451CAAD3D623F /* CoreModels.swift */,
 				752B4B461E647AB396F0606F /* CultureModels.swift */,
 				6A7E56950D4F94BDEBE69A5A /* Models.swift */,
+				6EC623E40E858D8D6D7AC0A0 /* SystemModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -222,6 +248,14 @@
 			path = Cultures;
 			sourceTree = "<group>";
 		};
+		7D9A8F88ABA78F667B283E94 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				583C2FEF54D9119EF6329BA4 /* ScheduleView.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		A2288A4F2A246883871071DF /* Strains */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +271,14 @@
 				4AAB78716B823D91F25EE0A6 /* DeadlinesView.swift */,
 			);
 			path = Deadlines;
+			sourceTree = "<group>";
+		};
+		B31820754D4690816AA4D56A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E0DC9B2F887EB1CE25C3242D /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		BDD993008E747AEACC835689 /* Theme */ = {
@@ -257,8 +299,11 @@
 				0A7518AE56208EB534A326B1 /* AppStore+Protocols.swift */,
 				FE47BD58EB6C7FE9C851AF0F /* AppStore+Reagents.swift */,
 				B748C879639D15696C4B323F /* AppStore+Reports.swift */,
+				EB81B87828226785DC6B3DD3 /* AppStore+Schedule.swift */,
+				FA80BB7E91562907496668DC /* AppStore+Settings.swift */,
 				2BB6F1B57B38881BA54A46E8 /* AppStore+Strains.swift */,
 				6CD2427E2DA97068571EDBED /* AppStore+Tasks.swift */,
+				32D43CBBA4914CBDD54F3CD6 /* AppStore+Workspaces.swift */,
 				069E4AFF27A9221AF66B35CA /* Database.swift */,
 			);
 			path = Data;
@@ -354,8 +399,11 @@
 				D16BF20C48CFF5076453D8D6 /* AppStore+Protocols.swift in Sources */,
 				5A602D1A7683BEB3246D6750 /* AppStore+Reagents.swift in Sources */,
 				BBC956CF01D8145C447259B9 /* AppStore+Reports.swift in Sources */,
+				01797935C470A6CEC787F0EC /* AppStore+Schedule.swift in Sources */,
+				313C8DE8BBBD21D570FB028B /* AppStore+Settings.swift in Sources */,
 				5144F1A529277431F79CB51A /* AppStore+Strains.swift in Sources */,
 				B546E9874B579748D7A440E8 /* AppStore+Tasks.swift in Sources */,
+				9A4B4E44CC3D475E50F348D8 /* AppStore+Workspaces.swift in Sources */,
 				941B7EB8D4779C381960803F /* AppStore.swift in Sources */,
 				6EFF99C4FA4715C59F7776EF /* BatchModels.swift in Sources */,
 				64BEB1A64709917005451CCE /* BoardView.swift in Sources */,
@@ -383,11 +431,15 @@
 				149474879CA09C0815ABEF66 /* ReportEditor.swift in Sources */,
 				D80E1A66C214F79887397A65 /* ReportsView.swift in Sources */,
 				66CB7264E7222C816DB60E08 /* RootView.swift in Sources */,
+				6FBA7568E9DD0A9831FAC313 /* ScheduleView.swift in Sources */,
+				2F049FA827C07EAF0729CDFE /* SettingsView.swift in Sources */,
 				C269B37F7EA0FFFEED1F63CA /* StrainEditor.swift in Sources */,
 				733F73242066BADECB2D1407 /* StrainsView.swift in Sources */,
+				F400621DF6B7783953659C06 /* SystemModels.swift in Sources */,
 				C59E9C896CB08D0B80ABADF2 /* TaskEditor.swift in Sources */,
 				A8DBB06176D09043627C9D38 /* TasksView.swift in Sources */,
 				3F85365DF57023003815CBB2 /* Theme.swift in Sources */,
+				4B3A14B57014ABE827CCCFAC /* WorkspaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

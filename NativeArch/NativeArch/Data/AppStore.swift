@@ -19,6 +19,9 @@ final class AppStore {
     var reports: [Report] = []
     var clones: [CloneConstruction] = []
     var cultures: [Culture] = []
+    var customEvents: [CustomEvent] = []
+    var workspaces: [Workspace] = []
+    var settings = AppSettings()
 
     init() {
         reloadProjects()
@@ -31,6 +34,9 @@ final class AppStore {
         reloadReports()
         reloadClones()
         reloadCultures()
+        reloadCustomEvents()
+        reloadWorkspaces()
+        loadSettings()
     }
 
     func strainName(_ id: String?) -> String {

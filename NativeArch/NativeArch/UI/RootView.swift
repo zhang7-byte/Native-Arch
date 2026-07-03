@@ -51,14 +51,7 @@ enum AppSection: String, CaseIterable, Identifiable, Hashable {
         }
     }
 
-    var implemented: Bool {
-        switch self {
-        case .projects, .experiments, .tasks, .strains, .reagents, .cultures,
-             .primers, .cloning, .protocols, .report,
-             .dashboard, .board, .deadlines: return true
-        default: return false
-        }
-    }
+    var implemented: Bool { true }
 }
 
 /// Liquid Glass navigation shell: a sidebar of sections with a detail pane.
@@ -87,7 +80,9 @@ struct RootView: View {
             case .cloning: CloningView()
             case .protocols: ProtocolsView()
             case .report: ReportsView()
-            default: ComingSoonView(section: selection ?? .dashboard)
+            case .schedule: ScheduleView()
+            case .workspace: WorkspaceView()
+            case .settings: SettingsView()
             }
         }
     }
